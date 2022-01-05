@@ -1,23 +1,32 @@
 const app = require('express')();
 
 const {
+  connectMongoDB
+} = require('./libs');
+
+const {
   appSecurity,
   appController,
   appErrorHandler,
   appRequestParser
 } = require('./middleware');
 
-//add app request parser middleware
+/**
+ * Connect Databases
+ */
+connectMongoDB();
+
+/**
+ * Application Middlewares
+ * Request parsers (body-parser)
+ * App Security (helmet/cors)
+ * App Routes Controller(include static paths)
+ * App Error Handler
+ */
+
 appRequestParser(app);
-
-//add app security middleware
 appSecurity(app);
-
-//connect app controllers
 appController(app);
-
-//added error handlers
 appErrorHandler(app);
-
 
 module.exports = app;

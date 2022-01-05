@@ -23,9 +23,10 @@ const concatApiRoutes = app => {
       const routeName = route.replace('.js', '');
       const routeFile = `${ api.path }/${ apiModule }/routes/${ route }`;
 
-      if (routeName === apiModule) endpoint = `${ api.path }/${ apiModule }`;
-      else endpoint = `${ api.path }/${ apiModule }/${ routeName }`;
+      if (routeName === apiModule) endpoint = `/api/${ apiModule }`;
+      else endpoint = `/api/${ apiModule }/${ routeName }`;
 
+      console.log(endpoint)
       app.use(endpoint, require(routeFile));
     }
   })

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   app: {
     env: process.env.NODE_ENV,
@@ -25,5 +27,29 @@ module.exports = {
         optionsSuccessStatus: 204
       }
     }
+  },
+  database: {
+    mongo: {
+      uri: process.env.MONGODB_URL,
+      options: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      }
+    },
+    postgresql: process.env.POSTGRESQL_URL
+  },
+  smtp: {
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: false,
+    requireTLS: true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD
+    }
+  },
+  secretKeys: {
+    pass: process.env.PASS_HASH_KEY,
+    token: process.env.TOKEN_HASH_KEY
   }
 }
