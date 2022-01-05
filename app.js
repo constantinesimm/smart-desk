@@ -1,21 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const favicon = require('serve-favicon');
-const bodyParser = require('body-parser');
+const app = require('express')();
 
-const app = express();
+const {
+  appSecurity,
+  appController,
+  appErrorHandler,
+  appRequestParser
+} = require('./middleware');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+//add app request parser middleware
+appRequestParser(app);
 
-app.get('/', (req, res) => {
-    const stream = fs.createReadStream('./public/index.html', 'utf-8');
+//add app security middleware
+appSecurity(app);
 
-    res.setHeader('content-type', 'text/html');
+//connect app controllers
+appController(app);
 
-    stream.pipe(res);
-});
+//added error handlers
+appErrorHandler(app);
+
 
 module.exports = app;

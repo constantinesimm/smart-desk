@@ -7,7 +7,7 @@
     "start": "npm run build && node ./bin/www",
     "dev": "nodemon  ./bin/www",
     "dev:app": "concurrently \"npm run dev\" \"npm run serve\"",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "npm run prebuild && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prebuild": "rimraf public",
@@ -21,10 +21,10 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "helmet": "^5.0.1",
-    "serve-favicon": "^2.5.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "install": "^0.13.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -32,23 +32,31 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "babel-eslint": "^10.1.0",
     "concurrently": "^7.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^7.0.0",
+    "eslint-plugin-vue": "^6.2.2",
     "imagemin-webpack-plugin": "^2.4.2",
     "node-sass": "^4.12.0",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
   },
   "engines": {
     "node": "14.16.1",
     "npm": "8.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:constantinesimm/smart-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/constantinesimm/smart-bot/issues"
+  },
+  "homepage": "https://github.com/constantinesimm/smart-bot#readme",
   "keywords": [
     "NodeJS",
     "ExpressJS",
