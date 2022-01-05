@@ -2,6 +2,7 @@
   "name": "smart-bot",
   "version": "0.0.1",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "npm run build && node ./bin/www",
     "dev": "nodemon  ./bin/www",
@@ -43,5 +44,18 @@
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2"
-  }
+  },
+  "engines": {
+    "node": "14.16.1",
+    "npm": "8.0.0"
+  },
+  "keywords": [
+    "NodeJS",
+    "ExpressJS",
+    "PostgreSQL",
+    "VueJS",
+    "TelegramBot"
+  ],
+  "author": "Konstantin Peschanov",
+  "license": "ISC"
 }
