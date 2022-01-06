@@ -4,7 +4,7 @@ let state = {
 
 const mutations = {
   CHANGE_LOCALE(state, payload) {
-    state.selectedLang = payload
+    state.selectedLang = payload;
   }
 };
 

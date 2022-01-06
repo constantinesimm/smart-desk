@@ -25,7 +25,7 @@ export default {
       },
     },
     login: {
-      title: 'Добро пожаловать в Smart Bot!',
+      title: 'Добро пожаловать в SmartDesk!',
       subtitle: 'Пожалуйста, войдите в свою учетную запись и начните приключение',
       forgotPassLink: 'Забыли пароль?',
       formButton: 'ВОЙТИ',
@@ -40,11 +40,23 @@ export default {
       loginQuestion: 'Уже есть учетная запись?',
       loginLink: 'Авторизация'
     },
+    registerComplete: {
+      title: 'Завершение регистрации',
+      subtitle: 'Почти готово :) Создайте свой пароль',
+      submitBtn: 'Завершить',
+      loaderTitle: 'Проверка токена доступа. Пожалуйста, подождите...'
+    },
     passwordReset: {
-      title: 'Форма восстановления пароля',
+      title: 'Восстановление пароля',
       subtitle: 'Укажите свой Email и мы пришлем вам новый пароль',
       cancelBtn: 'Отмена',
       submitBtn: 'Восстановить'
+    },
+    passwordChange: {
+      title: 'Смена пароля',
+      subtitle: 'Создайте свой пароль',
+      submitBtn: 'Сохранить',
+      loaderTitle: 'Проверка токена доступа. Пожалуйста, подождите...'
     }
   },
   error: {

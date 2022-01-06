@@ -9,17 +9,11 @@
             class="d-flex align-center"
           >
             <v-img
-              :src="require('@/assets/logotype.png')"
-              max-height="45px"
-              max-width="45px"
+              :src="require('@/assets/animation.gif')"
+              height="150px"
+              width="150px"
               alt="logo"
-              contain
-              class="me-3 "
             ></v-img>
-
-            <h2 class="text-2xl font-weight-semibold">
-              Smart Bot
-            </h2>
           </router-link>
         </v-card-title>
 
@@ -48,40 +42,6 @@
               placeholder="john@example.com"
               autocomplete="off"
               hide-details="auto"
-              class="mb-3"
-              required
-              outlined
-              dense
-            ></v-text-field>
-
-            <v-text-field
-              v-model="form.secret"
-              :rules="validateRules.secret"
-              :type="isPasswordVisible ? 'text' : 'password'"
-              :label="$vuetify.lang.t('$vuetify.auth.secretLabel')"
-              :prepend-inner-icon="icons.mdiLockOutline"
-              :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-              @click:append="isPasswordVisible = !isPasswordVisible"
-              placeholder="············"
-              autocomplete="off"
-              class="mb-3"
-              hide-details="auto"
-              required
-              outlined
-              dense
-            ></v-text-field>
-
-            <v-text-field
-              v-model="form.confirmSecret"
-              :rules="[[validateRules.confirmSecret], (this.form.secret === this.form.confirmSecret) || $vuetify.lang.t('$vuetify.auth.validate.format.confirmSecret')]"
-              :type="isPasswordVisible ? 'text' : 'password'"
-              :label="$vuetify.lang.t('$vuetify.auth.confirmSecretLabel')"
-              :prepend-inner-icon="icons.mdiLockOutline"
-              :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-              @click:append="isPasswordVisible = !isPasswordVisible"
-              placeholder="············"
-              hide-details="auto"
-              autocomplete="off"
               class="mb-3"
               required
               outlined
@@ -176,29 +136,6 @@
       </v-card>
 
     </div>
-
-    <!-- background triangle shape  -->
-    <img
-      class="auth-mask-bg"
-      height="190"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
-
-    <!-- tree -->
-    <v-img
-      class="auth-tree"
-      width="247"
-      height="185"
-      src="@/assets/images/misc/tree.png"
-    ></v-img>
-
-    <!-- tree  -->
-    <v-img
-      class="auth-tree-3"
-      width="377"
-      height="289"
-      src="@/assets/images/misc/tree-3.png"
-    ></v-img>
   </div>
 </template>
 
@@ -217,15 +154,12 @@ export default {
   data() {
     return {
       form: {
+        email: '',
         firstName: '',
         lastName: '',
-        email: '',
-        secret: '',
-        confirmSecret: ''
       },
       agreeTermsAndPrivacy: false,
       formValid: false,
-      isPasswordVisible: false,
       termsDialogIsVisible: false
     }
   },

@@ -13,7 +13,7 @@ export default {
     return ApiClient.post(`${ basePath }/local/register`, data);
   },
   localRegisterConfirm(data) {
-    return ApiClient.put(`/${ basePath }local/register/confirm`, data);
+    return ApiClient.put(`${ basePath }/local/register/confirm`, data);
   },
   localPasswordReset(data) {
     return ApiClient.post(`${ basePath }/local/password/reset`, data);

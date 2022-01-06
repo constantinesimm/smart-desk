@@ -21,7 +21,7 @@ authRouter
   );
 
 authRouter
-  .post(
+  .get(
     '/local/logout',
     authMiddleware.privateRoute,
     authController.localLogout

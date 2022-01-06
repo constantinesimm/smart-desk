@@ -27,9 +27,9 @@ httpClient.interceptors.response.use(response => {
 }, error => {
   const { data, status } = error.response;
 
-  if (status === 401) {
-    this._vm.$eventHub.$emit('session-expired-tooltip');
-  } else return Promise.reject(data);
+  if (status === 401) store.dispatch('user/sessionExpired');
+
+  return Promise.reject(data);
 })
 
 const ApiClient = {

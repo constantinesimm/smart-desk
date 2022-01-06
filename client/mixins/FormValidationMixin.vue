@@ -15,6 +15,7 @@
           ],
           confirmSecret: [
             v => !!v || this.$vuetify.lang.t('$vuetify.auth.validate.required'),
+            v => v === this.passwordConfirmationRule || this.$vuetify.lang.t('$vuetify.auth.validate.format.confirmSecret')
           ],
           firstName: [
             v => !!v || this.$vuetify.lang.t('$vuetify.auth.validate.required'),
@@ -25,6 +26,11 @@
             v => (v && /^[a-zA-Z]{3,15}$/.test(v)) || this.$vuetify.lang.t('$vuetify.auth.validate.format.names'),
           ],
         }
+      }
+    },
+    computed: {
+      passwordConfirmationRule() {
+        return this.form.secret;
       }
     },
     methods: {

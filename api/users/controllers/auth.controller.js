@@ -46,7 +46,7 @@ module.exports = {
   },
   verificateToken: (req, res, next) => {
     authService
-      .localRegister(req.params.token)
+      .verificateToken(req.params.token)
       .then(response => res.json(response))
       .catch(error => next(error));
   },

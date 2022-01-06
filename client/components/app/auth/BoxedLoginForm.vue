@@ -9,17 +9,11 @@
             class="d-flex align-center"
           >
             <v-img
-              :src="require('@/assets/logotype.png')"
-              max-height="45px"
-              max-width="45px"
+              :src="require('@/assets/animation.gif')"
+              height="150px"
+              width="150px"
               alt="logo"
-              contain
-              class="me-3 "
             ></v-img>
-
-            <h2 class="text-2xl font-weight-semibold">
-              Smart Bot
-            </h2>
           </router-link>
         </v-card-title>
 
@@ -124,35 +118,13 @@
         </v-card-actions>
       </v-card>
     </div>
-
-    <!-- background triangle shape  -->
-    <img
-      class="auth-mask-bg"
-      height="173"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
-
-    <!-- tree -->
-    <v-img
-      class="auth-tree"
-      width="247"
-      height="185"
-      src="@/assets/images/misc/tree.png"
-    ></v-img>
-
-    <!-- tree  -->
-    <v-img
-      class="auth-tree-3"
-      width="377"
-      height="289"
-      src="@/assets/images/misc/tree-3.png"
-    ></v-img>
   </div>
 </template>
 
 <script>
 import IconsMixin from '@/mixins/IconsMixin';
 import FormValidationMixin from '@/mixins/FormValidationMixin';
+import robotAnimation from '@/assets/animation/robot.json';
 const PasswordRecoveryForm = () => import('@/components/app/auth/PasswordRecoveryForm');
 
 export default {
@@ -170,6 +142,7 @@ export default {
       formValid: false,
       passwordRecoveryIsVisible: false,
       isPasswordVisible: false,
+      robotAnimation
     }
   },
   methods: {
@@ -191,4 +164,15 @@ export default {
 
 <style lang="scss">
 @import '~@/plugins/vuetify/default-preset/preset/pages/auth.scss';
+.robot-animation {
+  position: absolute;
+
+  .robot {
+    position: fixed;
+    z-index: 2000;
+    width: 400px;
+    height: 400px;
+    left: 50px;
+  }
+}
 </style>

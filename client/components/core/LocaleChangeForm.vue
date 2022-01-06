@@ -50,11 +50,9 @@ export default {
   },
   mounted() {
     const browserLang = navigator.language || navigator.userLanguage;
-    console.log(this.$vuetify.lang)
-    console.log('this.storedLocale', this.storedLocale)
     if (this.storedLocale === null) {
       const checkAvailableLocale = this.localesList.filter(ln => ln.value === browserLang.toLowerCase().split('-').shift());
-      console.log(checkAvailableLocale)
+
       if (checkAvailableLocale.length) {
         this.handleLocaleChange(checkAvailableLocale.shift().value);
       } else this.handleLocaleChange(this.defaultLocale);

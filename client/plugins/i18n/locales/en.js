@@ -25,7 +25,7 @@ export default {
       },
     },
     login: {
-      title: 'Welcome to Smart Bot!',
+      title: 'Welcome to SmartDesk!',
       subtitle: 'Please sign-in to your account and start the adventure',
       forgotPassLink: 'Forgot Password?',
       formButton: 'LOGIN',
@@ -40,11 +40,23 @@ export default {
       loginQuestion: 'Already have an account?',
       loginLink: 'Sign in instead'
     },
+    registerComplete: {
+      title: 'Register Completion',
+      subtitle: 'Almost there :) Create your password',
+      submitBtn: 'Create password',
+      loaderTitle: 'Checking service token. Please, stand by...'
+    },
     passwordReset: {
-      title: 'Password Recovery Form',
+      title: 'Password Recovery',
       subtitle: 'Enter your Email and we will send you a new password',
       cancelBtn: 'Cancel',
-      submitBtn: 'Recovery'
+      submitBtn: 'Recovery',
+    },
+    passwordChange: {
+      title: 'Password Change',
+      subtitle: 'Create New Password',
+      submitBtn: 'Create password',
+      loaderTitle: 'Checking service token. Please, stand by...'
     }
   },
   error: {

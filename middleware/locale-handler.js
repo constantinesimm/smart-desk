@@ -9,6 +9,6 @@ module.exports = app => {
 
     i18n.setLocale(locale);
 
-    return next();
+    next();
   }).use(i18n.init);
 }

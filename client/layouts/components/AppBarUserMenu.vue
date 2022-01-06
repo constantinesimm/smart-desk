@@ -146,7 +146,7 @@
           </v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Logout</v-list-item-title>
+          <v-list-item-title @click="handleLogout">Logout</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -181,6 +181,17 @@ export default {
       },
     }
   },
+  methods: {
+    handleLogout() {
+      this.$store
+        .dispatch('user/localLogout')
+        .then(response => {
+          this.$showSuccess(response.message);
+          this.$router.push({ name: 'LoginPage' })
+        })
+        .catch(error => this.$showError(error));
+    }
+  }
 }
 </script>
 

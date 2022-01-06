@@ -9,17 +9,11 @@
             class="d-flex align-center"
           >
             <v-img
-              :src="require('@/assets/logotype.png')"
-              max-height="45px"
-              max-width="45px"
+              :src="require('@/assets/animation.gif')"
+              height="150px"
+              width="150px"
               alt="logo"
-              contain
-              class="me-3 "
             ></v-img>
-
-            <h2 class="text-2xl font-weight-semibold">
-              Smart Bot
-            </h2>
           </router-link>
         </v-card-title>
 
@@ -65,7 +59,7 @@
             >
               {{ $vuetify.lang.t('$vuetify.auth.passwordReset.submitBtn') }}
               <v-icon right dark>
-                {{ icons.mdiMinusCircleOutline }}
+                {{ icons.mdiCheckOutline }}
               </v-icon>
             </v-btn>
           </v-form>
@@ -80,29 +74,6 @@
         </v-card-text>
       </v-card>
     </div>
-
-    <!-- background triangle shape  -->
-    <img
-      class="auth-mask-bg"
-      height="173"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
-
-    <!-- tree -->
-    <v-img
-      class="auth-tree"
-      width="247"
-      height="185"
-      src="@/assets/images/misc/tree.png"
-    ></v-img>
-
-    <!-- tree  -->
-    <v-img
-      class="auth-tree-3"
-      width="377"
-      height="289"
-      src="@/assets/images/misc/tree-3.png"
-    ></v-img>
   </div>
 </template>
 
@@ -133,8 +104,11 @@ export default {
         .then(({ message }) => {
           this.$showSuccess(message);
           this.triggerLoading();
+
+          this.$router.push({ name: 'LoginPage' });
         })
-        .catch(error => this.$showError(error));
+        .catch(error => this.$showError(error))
+        .finally(() => this.triggerLoading());
     }
   }
 }

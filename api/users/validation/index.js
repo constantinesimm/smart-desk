@@ -20,9 +20,10 @@ const registerSchema = {
 
 const registerConfirmSchema = {
   body: Joi.object({
+    userId: fields.userId,
     email: fields.email,
     secret: fields.secret,
-    token: fields.token
+    confirmSecret: fields.confirmSecret
   })
 };
 
@@ -34,9 +35,10 @@ const passwordResetSchema = {
 
 const passwordUpdateSchema = {
   body: Joi.object({
+    userId: fields.userId,
     email: fields.email,
     secret: fields.secret,
-    token: fields.token
+    confirmSecret: fields.confirmSecret
   })
 };
 
