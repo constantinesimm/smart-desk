@@ -14,6 +14,9 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "@mdi/js": "^5.9.55",
+    "@vuetify/cli-plugin-utils": "^0.0.9",
+    "apexcharts": "^3.27.3",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
@@ -29,8 +32,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.5",
     "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.2",
+    "vue-i18n": "^8.26.8",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuetify": "^2.4.0",
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -48,8 +55,11 @@
     "node-sass": "^4.12.0",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.4.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
   },
   "engines": {
     "node": "14.16.1",

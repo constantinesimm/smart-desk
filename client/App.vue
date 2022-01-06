@@ -1,16 +1,38 @@
 <template>
   <div id="smartBot-app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <component
+      :is="resolveLayout"
+    >
+      <router-view />
+    </component>
   </div>
 </template>
 
-<style lang="scss">
-  @import "assets/styles/layout";
+<script>
+const LayoutBlank = () => import('@/layouts/Blank.vue')
+const LayoutContent = () => import('@/layouts/Content.vue')
 
+export default {
+  name: 'App',
+  components: { LayoutBlank, LayoutContent },
+  data() {
+    return {}
+  },
+  computed: {
+    resolveLayout() {
+      if (this.$route.name === null) return null
+      if (this.$route.meta.layout === 'blank') return 'layout-blank'
+
+      return 'layout-content'
+    },
+  },
+  mounted() {
+    console.log('this.resolveLayout', this.resolveLayout)
+  },
+}
+</script>
+
+<style lang="scss">
   #nav {
     padding: 30px;
 
