@@ -1,20 +1,20 @@
-const app = require('express')();
+const app = require('express')()
 
 const {
-  connectMongoDB
-} = require('./libs');
+  connectMongoDB,
+} = require('./libs')
 
 const {
   appSecurity,
   appController,
   appErrorHandler,
-  appRequestParser
-} = require('./middleware');
+  appRequestParser,
+} = require('./middleware')
 
 /**
  * Connect Databases
  */
-connectMongoDB();
+connectMongoDB()
 
 /**
  * Application Middlewares
@@ -24,9 +24,9 @@ connectMongoDB();
  * App Error Handler
  */
 
-appRequestParser(app);
-appSecurity(app);
-appController(app);
-appErrorHandler(app);
+appRequestParser(app)
+appSecurity(app)
+appController(app)
+appErrorHandler(app)
 
-module.exports = app;
+module.exports = app
