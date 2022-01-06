@@ -43,45 +43,46 @@
             <v-text-field
               v-model="form.email"
               :rules="validateRules.email"
-              autocomplete="off"
-              outlined
               :label="$vuetify.lang.t('$vuetify.auth.emailLabel')"
-              placeholder="john@example.com"
               :prepend-inner-icon="icons.mdiEmailOutline"
+              placeholder="john@example.com"
               hide-details="auto"
+              autocomplete="off"
               class="mb-3"
+              outlined
+              dense
             ></v-text-field>
 
             <v-text-field
               v-model="form.secret"
               :rules="validateRules.secret"
-              autocomplete="off"
-              outlined
               :type="isPasswordVisible ? 'text' : 'password'"
               :label="$vuetify.lang.t('$vuetify.auth.secretLabel')"
-              placeholder="············"
               :prepend-inner-icon="icons.mdiLockOutline"
               :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-              hide-details="auto"
               @click:append="isPasswordVisible = !isPasswordVisible"
+              placeholder="············"
+              hide-details="auto"
+              autocomplete="off"
+              outlined
+              dense
             ></v-text-field>
 
             <div class="d-flex align-center justify-end flex-wrap">
               <!-- forgot link -->
-              <a
-                href="javascript:void(0)"
+              <router-link
+                :to="{ name: 'PasswordRestorePage' }"
                 class="mt-1"
-                @click="passwordRecoveryIsVisible = !passwordRecoveryIsVisible"
               >
                 {{ $vuetify.lang.t('$vuetify.auth.login.forgotPassLink') }}
-              </a>
+              </router-link>
             </div>
 
             <v-btn
               block
               color="primary"
               class="mt-6"
-              :disabled="!formValid && isLoadingButton"
+              :disabled="!formValid || isLoadingButton"
               :loading="isLoadingButton"
               @click="submitLogin"
             >
@@ -113,15 +114,15 @@
             v-for="link in socialLink"
             :key="link.icon"
             icon
+            x-large
             class="ms-1"
           >
-            <v-icon :color="$vuetify.theme.dark ? link.colorInDark : link.color">
+            <v-icon :color="$vuetify.theme.dark ? link.colorInDark : link.color" x-large>
               {{ link.icon }}
             </v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
-      <password-recovery-form :handle-dialog-visible="passwordRecoveryIsVisible" v-on:close-recovery-dialog="handleCloseRecoveryDialog" />
     </div>
 
     <!-- background triangle shape  -->
@@ -177,6 +178,12 @@ export default {
     },
     submitLogin() {
       this.triggerLoading();
+
+      this.$store
+        .dispatch('user/localLogin', this.form)
+        .then(({ message }) => this.$showSuccess(message))
+        .catch(error => this.$showError(error))
+        .finally(() => this.triggerLoading());
     }
   }
 }

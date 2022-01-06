@@ -13,6 +13,9 @@
             v => !!v || this.$vuetify.lang.t('$vuetify.auth.validate.required'),
             v => /^[a-zA-Z0-9]{6,14}$/.test(v) || this.$vuetify.lang.t('$vuetify.auth.validate.format.secret')
           ],
+          confirmSecret: [
+            v => !!v || this.$vuetify.lang.t('$vuetify.auth.validate.required'),
+          ],
           firstName: [
             v => !!v || this.$vuetify.lang.t('$vuetify.auth.validate.required'),
             v => (v && /^[a-zA-Z]{3,15}$/.test(v)) || this.$vuetify.lang.t('$vuetify.auth.validate.format.names'),
@@ -28,9 +31,6 @@
       triggerLoading() {
         this.isLoadingButton = !this.isLoadingButton;
       },
-      validateForm(formRef) {
-        this.$refs[formRef].validate();
-      }
     }
   }
 </script>

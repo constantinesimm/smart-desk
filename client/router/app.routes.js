@@ -35,7 +35,7 @@ const appRoutes = [
       {
         path: 'password/restore',
         name: 'PasswordRestorePage',
-        component: () => import('@/components/app/auth/BoxedRegisterForm'),
+        component: () => import('@/components/app/auth/PasswordRecoveryForm'),
         meta: {
           layout: 'blank'
         }

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background: transparent!important;">
     <vertical-nav-menu :is-drawer-open.sync="isDrawerOpen"></vertical-nav-menu>
 
     <v-app-bar

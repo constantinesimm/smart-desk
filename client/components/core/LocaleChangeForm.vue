@@ -1,14 +1,30 @@
 <template>
-  <div class="locale-select">
-    <v-select
-      :label="$vuetify.lang.t('$vuetify.locale.switcherLabel')"
-      :items="localesList"
-      item-value="value"
-      item-text="label"
-      v-model="selectedLocale"
-      @change="handleLocaleChange(selectedLocale)"
-    />
-  </div>
+  <v-menu
+    open-on-hover
+    bottom
+    offset-y
+  >
+    <template #activator="{ on, attrs }">
+      <v-btn
+        color="primary"
+        dark plain
+        v-bind="attrs"
+        v-on="on"
+      >
+        {{ $vuetify.lang.t('$vuetify.locale.switcherLabel') }}
+      </v-btn>
+      <span>{{ $vuetify.lang.current }}</span>
+    </template>
+
+    <v-list>
+      <v-list-item
+        v-for="(item, index) in localesList"
+        :key="index"
+      >
+        <v-list-item-title @click="handleLocaleChange(item.value)">{{ item.label }}</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-menu>
 </template>
 
 <script>

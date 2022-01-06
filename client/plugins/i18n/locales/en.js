@@ -8,6 +8,7 @@ export default {
   auth: {
     emailLabel: 'Email',
     secretLabel: 'Password',
+    confirmSecretLabel: 'Confirm Password',
     namesLabel: {
       first: 'Firstname',
       last: 'Lastname'
@@ -19,6 +20,7 @@ export default {
       format: {
         email: 'Invalid email format',
         secret: 'Invalid password format: must contains from 6 to 14 characters, at least 1 upper case letter and 1 digit',
+        confirmSecret: 'Password and password confirm doesn\'t match',
         names: 'Names must be more than 3 and less than 15 characters. Contains only letters'
       },
     },
@@ -33,10 +35,7 @@ export default {
     register: {
       title: 'Adventure starts here',
       subtitle: 'Make your app management easy and fun!',
-      terms: {
-        agree: 'I agree to',
-        text: 'privacy policy & terms'
-      },
+      terms: 'I agree to privacy policy & terms',
       formButton: 'REGISTER',
       loginQuestion: 'Already have an account?',
       loginLink: 'Sign in instead'
@@ -52,5 +51,6 @@ export default {
     title: 'Page Not Found',
     subtitle: 'we couldn\'t find the page you are looking for',
     btnText: 'back to home'
-  }
+  },
+  sessionExpired: 'Current Session Expired'
 }

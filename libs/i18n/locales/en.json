@@ -1,0 +1,21 @@
+{
+  "error.400": "Bad request",
+  "error.401": "Unauthenticated",
+  "error.403": "Forbidden",
+  "error.404": "Page not found",
+  "error.422": "Validation Failed",
+  "error.500": "Internal Server Error",
+  "auth.midware.privateRoute": "Page available only for authenticated users",
+  "auth.midware.publicRoute": "Page available only for guest users",
+  "auth.midware.userNotFound": "User not found or hasn't not created yet",
+  "auth.error.userNotFound": "User not found or hasn't not created yet",
+  "auth.error.notVerified": "Please, confirm your email",
+  "auth.error.invalidCredentials": "Email or password is incorrect",
+  "auth.error.userExists": "User with this email already exists. Use password recovery or enter another email",
+  "auth.success.loginMessage": "Great to see you again, {name}",
+  "auth.success.logoutMessage": "See you soon, {name}",
+  "auth.success.registerMessage": "An instruction on completing registration has been sent to your email",
+  "auth.success.emailConfirmMessage": "Registration complete, your account verified successful!",
+  "auth.success.passwordResetMessage": "An instruction on completing password recovery has been sent to your email",
+  "auth.success.passwordUpdateMessage": "Password successful changed!"
+}

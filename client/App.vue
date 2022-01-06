@@ -26,23 +26,27 @@ export default {
       return 'layout-content'
     },
   },
-  mounted() {
-    console.log('this.resolveLayout', this.resolveLayout)
+  created() {
+    this.$eventHub.$on('session-expired-tooltip', this.handleExpiredSession)
   },
+  beforeDestroy() {
+    this.$eventHub.$off('session-expired-tooltip');
+  },
+  methods: {
+    handleExpiredSession() {
+      this.$showError(this.$vuetify.lang.t('$vuetify.sessionExpired'))
+      this.$store.commit('user/SET_LOGOUT');
+
+      setTimeout(() => {
+        this.$router.push({ name: 'LoginPage' });
+      }, 2000);
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-  #nav {
-    padding: 30px;
-
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
-      }
-    }
-  }
+#smartBot-app {
+  background: #f4f5fa;
+}
 </style>
