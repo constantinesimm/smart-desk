@@ -9,6 +9,7 @@ const {
   appController,
   appErrorHandler,
   appRequestParser,
+  appLocaleHandler
 } = require('./middleware')
 
 /**
@@ -20,12 +21,14 @@ connectMongoDB()
  * Application Middlewares
  * Request parsers (body-parser)
  * App Security (helmet/cors)
+ * App Internalization (i18n)
  * App Routes Controller(include static paths)
  * App Error Handler
  */
 
 appRequestParser(app)
 appSecurity(app)
+appLocaleHandler(app)
 appController(app)
 appErrorHandler(app)
 

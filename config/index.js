@@ -15,8 +15,16 @@ module.exports = {
   api: {
     path: `${ process.cwd() }/api`
   },
+  client: {
+    baseUrl: process.env.VUE_APP_URL
+  },
   cors: {
-    allowedOrigins: ['localhost:8080', 'app.localhost:8080'],
+    allowedOrigins: [
+      'http://localhost:8080',
+      'http://app.localhost:8080',
+      'https://localhost:8080',
+      'https://app.localhost:8080'
+    ],
     allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Accept', 'Accept-Language', 'Authorization', 'Content-Type'],
     get corsOptions() {

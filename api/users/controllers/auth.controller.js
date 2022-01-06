@@ -6,7 +6,12 @@ module.exports = {
   localLogin: (req, res, next) => {
     authService
       .localLogin(req.body)
-      .then(response => res.json(response))
+      .then(response => {
+        res.setHeader('authorization', response.token);
+        res.setHeader('accept-language', response.user.language);
+
+        return res.json(response);
+      })
       .catch(error => next(error));
   },
   localLogout: (req, res, next) => {
@@ -41,7 +46,7 @@ module.exports = {
   },
   verificateToken: (req, res, next) => {
     authService
-      .localRegister(req.params.token)
+      .verificateToken(req.params.token)
       .then(response => res.json(response))
       .catch(error => next(error));
   },

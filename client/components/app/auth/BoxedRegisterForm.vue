@@ -9,17 +9,11 @@
             class="d-flex align-center"
           >
             <v-img
-              :src="require('@/assets/logotype.png')"
-              max-height="45px"
-              max-width="45px"
+              :src="require('@/assets/animation.gif')"
+              height="150px"
+              width="150px"
               alt="logo"
-              contain
-              class="me-3 "
             ></v-img>
-
-            <h2 class="text-2xl font-weight-semibold">
-              Smart Bot
-            </h2>
           </router-link>
         </v-card-title>
 
@@ -43,72 +37,54 @@
             <v-text-field
               v-model="form.email"
               :rules="validateRules.email"
-              required
-              outlined
-              autocomplete="off"
               :label="$vuetify.lang.t('$vuetify.auth.emailLabel')"
-              placeholder="john@example.com"
               :prepend-inner-icon="icons.mdiEmailOutline"
+              placeholder="john@example.com"
+              autocomplete="off"
               hide-details="auto"
               class="mb-3"
-            ></v-text-field>
-
-            <v-text-field
-              v-model="form.secret"
-              :rules="validateRules.secret"
               required
               outlined
-              autocomplete="off"
-              :type="isPasswordVisible ? 'text' : 'password'"
-              :label="$vuetify.lang.t('$vuetify.auth.secretLabel')"
-              placeholder="············"
-              :prepend-inner-icon="icons.mdiLockOutline"
-              :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-              hide-details="auto"
-              @click:append="isPasswordVisible = !isPasswordVisible"
-              class="mb-3"
+              dense
             ></v-text-field>
 
             <v-text-field
               v-model="form.firstName"
               :rules="validateRules.firstName"
+              :prepend-inner-icon="icons.mdiAccountOutline"
+              :label="$vuetify.lang.t('$vuetify.auth.namesLabel.first')"
+              hide-details="auto"
+              placeholder="John"
+              class="mb-3"
               required
               outlined
-              :label="$vuetify.lang.t('$vuetify.auth.namesLabel.first')"
-              placeholder="John"
-              :prepend-inner-icon="icons.mdiAccountOutline"
-              hide-details="auto"
-              class="mb-3"
+              dense
             ></v-text-field>
 
             <v-text-field
               v-model="form.lastName"
               :rules="validateRules.lastName"
-              required
-              outlined
+              :prepend-inner-icon="icons.mdiAccountOutline"
               :label="$vuetify.lang.t('$vuetify.auth.namesLabel.last')"
               hide-details="auto"
-              :prepend-inner-icon="icons.mdiAccountOutline"
               placeholder="Doe"
               class="mb-3"
+              required
+              outlined
+              dense
             ></v-text-field>
 
             <div class="d-flex align-items-center justify-content-center">
               <v-checkbox
-                hide-details
-                class="mt-1"
                 :rules="[v => !!v || $vuetify.lang.t('$vuetify.auth.validate.termsAndPolicy')]"
+                v-model="agreeTermsAndPrivacy"
+                hide-details="auto"
+                class="mt-1"
                 required
-                v-model="form.agreeTermsAndPrivacy"
               >
-                <template #label>
-                  <div class="d-flex align-center flex-wrap">
-                    <span class="me-2">{{ $vuetify.lang.t('$vuetify.auth.register.terms.agree') }}</span>
-                  </div>
-                </template>
               </v-checkbox>
-              <a @click="termsDialogIsVisible = true" class="d-flex align-end justify-center" style="font-size: 16px">
-                {{ $vuetify.lang.t('$vuetify.auth.register.terms.text') }}
+              <a @click="termsDialogIsVisible = true" class="d-flex align-end justify-center" style="font-size: 12px">
+                {{ $vuetify.lang.t('$vuetify.auth.register.terms') }}
               </a>
             </div>
 
@@ -116,7 +92,7 @@
               block
               color="primary"
               class="mt-6"
-              :disabled="!formValid && isLoadingButton"
+              :disabled="!formValid || isLoadingButton || !agreeTermsAndPrivacy"
               :loading="isLoadingButton"
               @click="submitRegister"
             >
@@ -148,9 +124,10 @@
             v-for="link in socialLink"
             :key="link.icon"
             icon
+            x-large
             class="ms-1"
           >
-            <v-icon :color="$vuetify.theme.dark ? link.colorInDark:link.color">
+            <v-icon x-large :color="$vuetify.theme.dark ? link.colorInDark:link.color">
               {{ link.icon }}
             </v-icon>
           </v-btn>
@@ -159,29 +136,6 @@
       </v-card>
 
     </div>
-
-    <!-- background triangle shape  -->
-    <img
-      class="auth-mask-bg"
-      height="190"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
-
-    <!-- tree -->
-    <v-img
-      class="auth-tree"
-      width="247"
-      height="185"
-      src="@/assets/images/misc/tree.png"
-    ></v-img>
-
-    <!-- tree  -->
-    <v-img
-      class="auth-tree-3"
-      width="377"
-      height="289"
-      src="@/assets/images/misc/tree-3.png"
-    ></v-img>
   </div>
 </template>
 
@@ -200,14 +154,12 @@ export default {
   data() {
     return {
       form: {
+        email: '',
         firstName: '',
         lastName: '',
-        email: '',
-        secret: '',
-        agreeTermsAndPrivacy: false
       },
+      agreeTermsAndPrivacy: false,
       formValid: false,
-      isPasswordVisible: false,
       termsDialogIsVisible: false
     }
   },
@@ -217,6 +169,14 @@ export default {
     },
     submitRegister() {
       this.triggerLoading();
+
+      Object.assign(this.form, { language: this.$vuetify.lang.current });
+
+      this.$store
+        .dispatch('user/localRegister', this.form)
+        .then(({ message }) => this.$showSuccess(message))
+        .catch(error => this.$showError(error))
+        .finally(() => this.triggerLoading());
     }
   }
 }

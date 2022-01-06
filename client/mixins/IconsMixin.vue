@@ -8,7 +8,9 @@ import {
   mdiAccountOutline,
   mdiEmailOutline,
   mdiLockOutline,
-  mdiCheckOutline
+  mdiCheckOutline,
+  mdiMinusCircleOutline,
+  mdiCheckboxMarkedCircleOutline
 } from '@mdi/js'
 
   export default {
@@ -24,7 +26,9 @@ import {
           mdiAccountOutline,
           mdiEmailOutline,
           mdiLockOutline,
-          mdiCheckOutline
+          mdiCheckOutline,
+          mdiMinusCircleOutline,
+          mdiCheckboxMarkedCircleOutline
         },
         socialLink: [
           {

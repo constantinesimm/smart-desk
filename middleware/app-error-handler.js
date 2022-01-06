@@ -1,10 +1,9 @@
-const { HttpError, validator: { ValidationError } } = require('../libs');
+const { HttpError, validator: { ValidationError }, i18n } = require('../libs');
 
 module.exports = app => {
   /* catch 404 and forward to error handler */
   app.use((req, res, next) => {
-    console.log(req.url)
-    next(new HttpError(404, `Page not found`))
+    next(new HttpError(404, i18n.__('error.404')));
   });
 
   /* Error handler */

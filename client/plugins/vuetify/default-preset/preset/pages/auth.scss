@@ -21,7 +21,15 @@
       position: absolute;
       bottom: 0;
       width: 100%;
+
+      &-reverse {
+        position: absolute;
+        top: 0;
+        transform: scale(-1, -1);
+        width: 100%;
+      }
     }
+
     .auth-tree,
     .auth-tree-3 {
       position: absolute;
@@ -40,6 +48,8 @@
       width: 28rem;
       z-index: 1;
       .auth-card {
+        border-radius: 20px;
+        box-shadow: 0 2px 14px 3px rgb(94 86 105 / 53%);
         padding: 0.9375rem 0.875rem;
       }
     }

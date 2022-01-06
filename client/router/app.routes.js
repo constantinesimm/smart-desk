@@ -27,7 +27,7 @@ const appRoutes = [
       {
         path: 'register/confirm',
         name: 'RegisterConfirmPage',
-        component: () => import('@/components/app/auth/BoxedRegisterForm'),
+        component: () => import('@/components/app/auth/AuthActionConfirmForm'),
         meta: {
           layout: 'blank'
         }
@@ -35,7 +35,15 @@ const appRoutes = [
       {
         path: 'password/restore',
         name: 'PasswordRestorePage',
-        component: () => import('@/components/app/auth/BoxedRegisterForm'),
+        component: () => import('@/components/app/auth/PasswordRecoveryForm'),
+        meta: {
+          layout: 'blank'
+        }
+      },
+      {
+        path: 'password/change',
+        name: 'PasswordChangePage',
+        component: () => import('@/components/app/auth/AuthActionConfirmForm'),
         meta: {
           layout: 'blank'
         }

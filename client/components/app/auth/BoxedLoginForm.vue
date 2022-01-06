@@ -9,17 +9,11 @@
             class="d-flex align-center"
           >
             <v-img
-              :src="require('@/assets/logotype.png')"
-              max-height="45px"
-              max-width="45px"
+              :src="require('@/assets/animation.gif')"
+              height="150px"
+              width="150px"
               alt="logo"
-              contain
-              class="me-3 "
             ></v-img>
-
-            <h2 class="text-2xl font-weight-semibold">
-              Smart Bot
-            </h2>
           </router-link>
         </v-card-title>
 
@@ -43,45 +37,46 @@
             <v-text-field
               v-model="form.email"
               :rules="validateRules.email"
-              autocomplete="off"
-              outlined
               :label="$vuetify.lang.t('$vuetify.auth.emailLabel')"
-              placeholder="john@example.com"
               :prepend-inner-icon="icons.mdiEmailOutline"
+              placeholder="john@example.com"
               hide-details="auto"
+              autocomplete="off"
               class="mb-3"
+              outlined
+              dense
             ></v-text-field>
 
             <v-text-field
               v-model="form.secret"
               :rules="validateRules.secret"
-              autocomplete="off"
-              outlined
               :type="isPasswordVisible ? 'text' : 'password'"
               :label="$vuetify.lang.t('$vuetify.auth.secretLabel')"
-              placeholder="············"
               :prepend-inner-icon="icons.mdiLockOutline"
               :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
-              hide-details="auto"
               @click:append="isPasswordVisible = !isPasswordVisible"
+              placeholder="············"
+              hide-details="auto"
+              autocomplete="off"
+              outlined
+              dense
             ></v-text-field>
 
             <div class="d-flex align-center justify-end flex-wrap">
               <!-- forgot link -->
-              <a
-                href="javascript:void(0)"
+              <router-link
+                :to="{ name: 'PasswordRestorePage' }"
                 class="mt-1"
-                @click="passwordRecoveryIsVisible = !passwordRecoveryIsVisible"
               >
                 {{ $vuetify.lang.t('$vuetify.auth.login.forgotPassLink') }}
-              </a>
+              </router-link>
             </div>
 
             <v-btn
               block
               color="primary"
               class="mt-6"
-              :disabled="!formValid && isLoadingButton"
+              :disabled="!formValid || isLoadingButton"
               :loading="isLoadingButton"
               @click="submitLogin"
             >
@@ -113,45 +108,23 @@
             v-for="link in socialLink"
             :key="link.icon"
             icon
+            x-large
             class="ms-1"
           >
-            <v-icon :color="$vuetify.theme.dark ? link.colorInDark : link.color">
+            <v-icon :color="$vuetify.theme.dark ? link.colorInDark : link.color" x-large>
               {{ link.icon }}
             </v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
-      <password-recovery-form :handle-dialog-visible="passwordRecoveryIsVisible" v-on:close-recovery-dialog="handleCloseRecoveryDialog" />
     </div>
-
-    <!-- background triangle shape  -->
-    <img
-      class="auth-mask-bg"
-      height="173"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark':'light'}.png`)"
-    >
-
-    <!-- tree -->
-    <v-img
-      class="auth-tree"
-      width="247"
-      height="185"
-      src="@/assets/images/misc/tree.png"
-    ></v-img>
-
-    <!-- tree  -->
-    <v-img
-      class="auth-tree-3"
-      width="377"
-      height="289"
-      src="@/assets/images/misc/tree-3.png"
-    ></v-img>
   </div>
 </template>
 
 <script>
 import IconsMixin from '@/mixins/IconsMixin';
 import FormValidationMixin from '@/mixins/FormValidationMixin';
+import robotAnimation from '@/assets/animation/robot.json';
 const PasswordRecoveryForm = () => import('@/components/app/auth/PasswordRecoveryForm');
 
 export default {
@@ -169,6 +142,7 @@ export default {
       formValid: false,
       passwordRecoveryIsVisible: false,
       isPasswordVisible: false,
+      robotAnimation
     }
   },
   methods: {
@@ -177,6 +151,12 @@ export default {
     },
     submitLogin() {
       this.triggerLoading();
+
+      this.$store
+        .dispatch('user/localLogin', this.form)
+        .then(({ message }) => this.$showSuccess(message))
+        .catch(error => this.$showError(error))
+        .finally(() => this.triggerLoading());
     }
   }
 }
@@ -184,4 +164,15 @@ export default {
 
 <style lang="scss">
 @import '~@/plugins/vuetify/default-preset/preset/pages/auth.scss';
+.robot-animation {
+  position: absolute;
+
+  .robot {
+    position: fixed;
+    z-index: 2000;
+    width: 400px;
+    height: 400px;
+    left: 50px;
+  }
+}
 </style>

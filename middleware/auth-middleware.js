@@ -1,4 +1,4 @@
-const { HttpError, jwt } = require('../libs');
+const { HttpError, jwt, i18n } = require('../libs');
 const { UserModel } = require('../api/users/models');
 
 module.exports = {
@@ -6,11 +6,12 @@ module.exports = {
     const authToken = req.headers['authorization'];
 
     if (!authToken) return next();
-    else return next(new HttpError(403, 'Page available only for guest users'));
+    else return next(new HttpError(403, i18n.__('auth.midware.publicRoute')));
   },
   privateRoute: (req, res, next) => {
     const authToken = req.headers['authorization'];
-    if (!authToken) return next(new HttpError(401, 'Page available only for authenticated users'));
+    const userLocale = req.headers['accept-language'];
+    if (!authToken) return next(new HttpError(401, i18n.__('auth.midware.privateRoute')));
 
     const { userId, userEmail } = jwt.verifyToken(authToken);
     if (!userId || !userEmail) return next(new HttpError(401, jwt.verifyToken(authToken).message))
@@ -24,11 +25,12 @@ module.exports = {
         ]
       }, (err, user) => {
         if (err) return next(new HttpError(500, err.message));
-        if (!user) return next(new HttpError(403, 'User not found or hasn\'t not created yet'));
+        if (!user) return next(new HttpError(403, i18n.__('auth.midware.userNotFound')));
 
         req.locals = {
           userId,
-          userEmail
+          userEmail,
+          userLocale
         };
 
         return next();

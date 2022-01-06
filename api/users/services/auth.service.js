@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { HttpError, jwt } = require('../../../libs');
+const { HttpError, jwt, i18n, mailer } = require('../../../libs');
 const { UserModel } = require('../models');
 
 module.exports = {
@@ -8,23 +8,23 @@ module.exports = {
       UserModel
         .findOne({ email }, (err, user) => {
           if (err) return reject(new HttpError(500, err.message));
-          if (!user) return reject(new HttpError(404, 'User not found or hasn\'t not created yet'));
-          if (!user.isVerified) return reject(new HttpError(400, 'Please, confirm your email'));
+          if (!user) return reject(new HttpError(404, i18n.__('auth.error.userNotFound')));
+          if (!user.isVerified) return reject(new HttpError(400, i18n.__('auth.error.notVerified')));
 
           return bcrypt.compare(secret, user.hash, (err, result) => {
             if (err) return reject(new HttpError(500, err.message));
-            if (!result) return reject(new HttpError(401, 'Email or password is incorrect'));
+            if (!result) return reject(new HttpError(401, i18n.__('auth.error.invalidCredentials')));
 
             const authToken = jwt.signToken({ userId: user._id, userEmail: user.email });
 
             UserModel
               .findByIdAndUpdate(user._id, { $set: { authToken } }, { new: true })
-              .select({ hash: 0 })
+              .select({ hash: 0, serviceToken: 0, authToken: 0 })
               .populate('campaigns')
               .exec((err, doc) => {
                 if (err) return reject(new HttpError(500, err.message));
 
-                return resolve({ message: `Great to see you again, ${ doc.firstName }`, user: doc });
+                return resolve({ message: i18n.__('auth.success.loginMessage', { name: doc.firstName }), token: authToken, user: doc });
               })
           })
         })
@@ -38,7 +38,7 @@ module.exports = {
         .exec((err, doc) => {
           if (err) return reject(new HttpError(500, err.message));
 
-          return resolve({ message: `See you soon, ${ doc.firstName }`});
+          return resolve({ message: i18n.__('auth.success.logoutMessage', { name: doc.firstName }) });
         });
     })
   },
@@ -47,7 +47,7 @@ module.exports = {
       UserModel
         .findOne({ email }, (err, user) => {
           if (err) return reject(new HttpError(500, err.message));
-          if (user) return reject(new HttpError(400, 'User with this email already exists. Use password recovery or enter another email'));
+          if (user) return reject(new HttpError(400, i18n.__('auth.error.userExists')));
 
           let newUser = new UserModel({ email, firstName, lastName, language });
 
@@ -57,21 +57,19 @@ module.exports = {
             .save((err, doc) => {
               if (err) return reject(new HttpError(500, err.message));
 
-              /** TO-DO
-               * Email notifications with confirm token
-               */
+              mailer(doc.email, 'register', doc.firstName, doc.serviceToken);
 
-              return resolve({ message: 'An instruction on completing registration has been sent to your email' });
+              return resolve({ message: i18n.__('auth.success.registerMessage') });
             });
         })
     })
   },
-  localRegisterConfirm({ email, secret, token }) {
+  localRegisterConfirm({ userId, email, secret }) {
     return new Promise((resolve, reject) => {
       UserModel
-        .findOne({ $and: [{ email }, { serviceToken: token }] }, (err, user) => {
+        .findById(userId, (err, user) => {
           if (err) return reject(new HttpError(500, err.message));
-          if (!user) return reject(new HttpError(404, 'User not found or hasn\'t not created yet'));
+          if (!user) return reject(new HttpError(404, i18n.__('auth.error.userNotFound')));
 
           return bcrypt.genSalt(10, (err, salt) => {
             if (err) return reject(new HttpError(500, err.message));
@@ -83,24 +81,24 @@ module.exports = {
 
               UserModel
                 .findByIdAndUpdate(user._id, { hash, isVerified: true, serviceToken: null, authToken }, { new: true })
-                .select({ hash: 0 })
-                .populate('campaigns')
+                .select({ hash: 0, serviceToken: 0, authToken: 0 })
+                //.populate('campaigns')
                 .exec((err, doc) => {
                   if (err) return reject(new HttpError(500, err.message));
 
-                  return resolve({ message: 'Registration complete, your account verified successful!', user: doc });
+                  return resolve({ message: i18n.__('auth.success.emailConfirmMessage'), token: authToken, user: doc });
                 })
             })
           })
         })
     })
   },
-  localPasswordReset({ email }) {
+  localPasswordReset(email) {
     return new Promise((resolve, reject) => {
       UserModel
         .findOne({ email }, (err, user) => {
           if (err) return reject(new HttpError(500, err.message));
-          if (!user) return reject(new HttpError(404, 'User not found or hasn\'t not created yet'));
+          if (!user) return reject(new HttpError(404, i18n.__('auth.error.userNotFound')));
 
           UserModel
             .findOneAndUpdate(
@@ -116,23 +114,21 @@ module.exports = {
               { new: true },
               (err, user) => {
                 if (err) return reject(new HttpError(500, err.message));
-                if (!user) return reject(new HttpError(404, 'User not found or hasn\'t not created yet'));
+                if (!user) return reject(new HttpError(404, i18n.__('auth.error.userNotFound')));
 
-                /** TO-DO
-                 * Email notifications with confirm token
-                 */
+                mailer(user.email, 'passwordRecovery', user.firstName, user.serviceToken);
 
-                return resolve({ message: 'An instruction on completing password recovery has been sent to your email' });
+                return resolve({ message: i18n.__('auth.success.passwordResetMessage') });
               });
         })
     })
   },
-  localPasswordUpdate({ email, secret, token }) {
+  localPasswordUpdate({ userId, email, secret }) {
     return new Promise((resolve, reject) => {
-        UserModel
-          .findOne({ $and: [{ email }, { serviceToken: token }] }, (err, user) => {
-            if (err) return reject(new HttpError(500, err.message));
-            if (!user) return reject(new HttpError(404, 'User not found or hasn\'t not created yet'));
+      UserModel
+        .findById(userId, (err, user) => {
+          if (err) return reject(new HttpError(500, err.message));
+          if (!user) return reject(new HttpError(404, i18n.__('auth.error.userNotFound')));
 
             return bcrypt.genSalt(10, (err, salt) => {
               if (err) return reject(new HttpError(500, err.message));
@@ -144,12 +140,12 @@ module.exports = {
 
                 UserModel
                   .findByIdAndUpdate(user._id, { hash, isVerified: true, serviceToken: null, authToken }, { new: true })
-                  .select({ hash: 0 })
-                  .populate('campaigns')
+                  .select({ hash: 0, serviceToken: 0, authToken: 0 })
+                  //.populate('campaigns')
                   .exec((err, doc) => {
                     if (err) return reject(new HttpError(500, err.message));
 
-                    return resolve({ message: 'Password successful changed!', user: doc });
+                    return resolve({ message: i18n.__('auth.success.passwordUpdateMessage'), token: authToken, user: doc });
                   })
               })
             });
@@ -160,8 +156,28 @@ module.exports = {
     return new Promise((resolve, reject) => {
       const { userId, userEmail } = jwt.verifyToken(token);
 
-      if (!userId || userEmail) return reject(new HttpError(400, jwt.verifyToken(token).message))
-      else return resolve({ id: userId, email: userEmail });
+      if (!userId || !userEmail) return reject(new HttpError(400, jwt.verifyToken(token).message))
+      else {
+        UserModel
+          .findOne({
+            $and: [
+              { _id: userId },
+              {
+                $or: [
+                  { authToken: token },
+                  { serviceToken: token }
+                ]
+              }
+            ]
+          })
+          .select({ language: 1 })
+          .exec((err, user) => {
+            if (err) return reject(new HttpError(500, err.message));
+            if (!user) return reject(new HttpError(401, i18n.__('auth.error.invalidToken')));
+
+            return resolve({ language: user.language, email: userEmail, userId });
+          })
+      }
     })
   },
   socialLoginGoogle(userId, token) {
