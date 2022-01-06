@@ -1,21 +1,35 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const favicon = require('serve-favicon');
-const bodyParser = require('body-parser');
+const app = require('express')()
 
-const app = express();
+const {
+  connectMongoDB,
+} = require('./libs')
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+const {
+  appSecurity,
+  appController,
+  appErrorHandler,
+  appRequestParser,
+  appLocaleHandler
+} = require('./middleware')
 
-app.get('/', (req, res) => {
-    const stream = fs.createReadStream('./public/index.html', 'utf-8');
+/**
+ * Connect Databases
+ */
+connectMongoDB()
 
-    res.setHeader('content-type', 'text/html');
+/**
+ * Application Middlewares
+ * Request parsers (body-parser)
+ * App Security (helmet/cors)
+ * App Internalization (i18n)
+ * App Routes Controller(include static paths)
+ * App Error Handler
+ */
 
-    stream.pipe(res);
-});
+appRequestParser(app)
+appSecurity(app)
+appLocaleHandler(app)
+appController(app)
+appErrorHandler(app)
 
-module.exports = app;
+module.exports = app

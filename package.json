@@ -2,28 +2,48 @@
   "name": "smart-bot",
   "version": "0.0.1",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "npm run build && node ./bin/www",
     "dev": "nodemon  ./bin/www",
     "dev:app": "concurrently \"npm run dev\" \"npm run serve\"",
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "npm run prebuild && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prebuild": "rimraf public",
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "@mdi/js": "^5.9.55",
+    "@vuetify/cli-plugin-utils": "^0.0.9",
+    "apexcharts": "^3.27.3",
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
     "express": "~4.16.1",
+    "express-validation": "^3.0.8",
+    "google-auth-library": "^7.11.0",
     "helmet": "^5.0.1",
-    "serve-favicon": "^2.5.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "i18n": "^0.13.4",
+    "install": "^0.13.0",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lottie-web-vue": "^1.2.0",
+    "mongoose": "^6.1.5",
+    "nodemailer": "^6.7.2",
+    "pug": "^3.0.2",
+    "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.2",
+    "vue-i18n": "^8.26.8",
+    "vue-router": "^3.2.0",
+    "vue-sweetalert2": "^5.0.2",
+    "vuetify": "^2.4.0",
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -31,17 +51,41 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "babel-eslint": "^10.1.0",
     "concurrently": "^7.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^7.0.0",
+    "eslint-plugin-vue": "^6.2.2",
     "imagemin-webpack-plugin": "^2.4.2",
     "node-sass": "^4.12.0",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
-    "sass-loader": "^8.0.2"
-  }
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.4.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
+  },
+  "engines": {
+    "node": "14.16.1",
+    "npm": "8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:constantinesimm/smart-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/constantinesimm/smart-bot/issues"
+  },
+  "homepage": "https://github.com/constantinesimm/smart-bot#readme",
+  "keywords": [
+    "NodeJS",
+    "ExpressJS",
+    "PostgreSQL",
+    "VueJS",
+    "TelegramBot"
+  ],
+  "author": "Konstantin Peschanov",
+  "license": "ISC"
 }
