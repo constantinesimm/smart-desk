@@ -2,20 +2,20 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import eventHub from '@/libs/event-hub';
+
 import '@/assets/styles/layout.scss'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
 import vuetify from './plugins/vuetify'
 import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
 import LottieAnimation from 'lottie-web-vue';
 
 Vue.config.productionTip = process.env.NODE_ENV === 'development';
 
-Vue.prototype.$eventHub = eventHub;
+Vue.prototype.$eventHub = new Vue();
 
 Vue.component('lottie-animation', LottieAnimation);
 Vue.use(VueSweetalert2);
-
 Vue.use({
   install: function(vue) {
     Vue.prototype.$showSuccess = function(msg) {
@@ -44,8 +44,8 @@ Vue.use({
 
 
 new Vue({
+  vuetify,
   router,
   store,
-  vuetify,
   render: h => h(App),
-}).$mount('#smartBot-app')
+}).$mount('#smartDesk-app')

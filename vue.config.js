@@ -13,7 +13,7 @@ module.exports = {
       compress: true,
       disableHostCheck: true,
       clientLogLevel: 'info',
-      https: false,
+      https: true,
 
       watchOptions: {
         poll: true,

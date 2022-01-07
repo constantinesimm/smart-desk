@@ -19,9 +19,9 @@
 	"auth.success.emailConfirmMessage": "Реєстрацію завершено, ваш обліковий запис успішно підтверджено!",
 	"auth.success.passwordResetMessage": "На вашу електронну адресу надіслано інструкцію щодо завершення відновлення пароля",
 	"auth.success.passwordUpdateMessage": "Пароль успішно змінено!",
-	"email.footer.siteLink.": "Веб-сайт SmartDesk",
-	"email.footer.termsLink.": "Умови надання послуг",
-	"email.footer.copyright.": "SmartDesk.io - Усі права захищено",
+	"email.footer.siteLink": "Веб-сайт SmartDesk",
+	"email.footer.termsLink": "Умови надання послуг",
+	"email.footer.copyright": "SmartDesk.io - Усі права захищено",
 	"email.register.subject": "Підтвердження реєстрації | SmartDesk",
 	"email.register.title": "{{name}}, ласкаво просимо на борт!",
 	"email.register.subtitle": "Підтвердьте свою електронну адресу, щоб завершити реєстрацію",
@@ -35,8 +35,5 @@
 	"email.passwordRecovery.hint": "Ми тут, щоб допомогти. Натисніть кнопку нижче, щоб змінити свій пароль.",
 	"email.passwordRecovery.button": "Відновити мій пароль",
 	"email.passwordRecovery.warning": "Якщо ви не просили відновити свій пароль, проігноруйте цей лист.",
-	"email.passwordRecovery.description": "Ви отримали цей лист, оскільки ви або хтось ініціював операцію відновлення пароля у вашому обліковому записі SmartDesk.",
-	"email.footer.siteLink": "email.footer.siteLink",
-	"email.footer.termsLink": "email.footer.termsLink",
-	"email.footer.copyright": "email.footer.copyright"
+	"email.passwordRecovery.description": "Ви отримали цей лист, оскільки ви або хтось ініціював операцію відновлення пароля у вашому обліковому записі SmartDesk."
 }

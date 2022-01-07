@@ -11,25 +11,28 @@ const appRoutes = [
       {
         path: 'login',
         name: 'LoginPage',
-        component: () => import('@/components/app/auth/BoxedLoginForm'),
+        component: () => import('@/components/app/auth/LoginForm'),
         meta: {
-          layout: 'blank'
+          layout: 'blank',
+          pageTitle: '$vuetify.pageTitles.app.login'
         },
       },
       {
         path: 'register',
         name: 'RegisterPage',
-        component: () => import('@/components/app/auth/BoxedRegisterForm'),
+        component: () => import('@/components/app/auth/RegisterForm'),
         meta: {
-          layout: 'blank'
+          layout: 'blank',
+          pageTitle: '$vuetify.pageTitles.app.register'
         },
       },
       {
         path: 'register/confirm',
         name: 'RegisterConfirmPage',
-        component: () => import('@/components/app/auth/AuthActionConfirmForm'),
+        component: () => import('@/components/app/auth/ConfirmForm'),
         meta: {
-          layout: 'blank'
+          layout: 'blank',
+          pageTitle: '$vuetify.pageTitles.app.register'
         }
       },
       {
@@ -37,15 +40,17 @@ const appRoutes = [
         name: 'PasswordRestorePage',
         component: () => import('@/components/app/auth/PasswordRecoveryForm'),
         meta: {
-          layout: 'blank'
+          layout: 'blank',
+          pageTitle: '$vuetify.pageTitles.app.register'
         }
       },
       {
         path: 'password/change',
         name: 'PasswordChangePage',
-        component: () => import('@/components/app/auth/AuthActionConfirmForm'),
+        component: () => import('@/components/app/auth/ConfirmForm'),
         meta: {
-          layout: 'blank'
+          layout: 'blank',
+          pageTitle: '$vuetify.pageTitles.app.register'
         }
       },
     ]
@@ -53,14 +58,19 @@ const appRoutes = [
   {
     path: '/dashboard',
     name: 'DashboardPage',
-    component: () => import('@/views/app/DashboardPage')
+    component: () => import('@/views/app/DashboardPage'),
+    meta: {
+      layout: 'content',
+      pageTitle: '$vuetify.pageTitles.app.dashboard'
+    }
   },
   {
     path: '*',
     name: 'ErrorPage',
     component: () => import('@/views/ErrorPage'),
     meta: {
-      layout: 'blank'
+      layout: 'blank',
+      pageTitle: '$vuetify.pageTitles.error'
     }
   }
 ];

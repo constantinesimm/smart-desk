@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import VueI18n from 'vue-i18n'
 import preset from './default-preset/preset'
 
 import {
@@ -8,18 +7,7 @@ import {
   defaultLanguage
 } from '../i18n'
 
-/*
-
-const i18n = new VueI18n({
-  locale: defaultLanguage,
-  messages
-})
- */
-
-
-Vue.use(Vuetify)
-// Vue.use(VueI18n);
-
+Vue.use(Vuetify);
 
 export default new Vuetify({
   preset,

@@ -5,6 +5,8 @@ export default {
   locale: {
     switcherLabel: 'Select locale'
   },
+  terms: 'Terms',
+  privacyPolicy: 'Privacy Policy',
   auth: {
     emailLabel: 'Email',
     secretLabel: 'Password',
@@ -25,15 +27,15 @@ export default {
       },
     },
     login: {
-      title: 'Welcome to SmartDesk!',
-      subtitle: 'Please sign-in to your account and start the adventure',
+      title: 'Login',
+      subtitle: 'Please sign-in to your account',
       forgotPassLink: 'Forgot Password?',
       formButton: 'LOGIN',
       registerQuestion: 'New on our platform?',
       registerLink: 'Create an account',
     },
     register: {
-      title: 'Adventure starts here',
+      title: 'Welcome to SmartDesk!',
       subtitle: 'Make your app management easy and fun!',
       terms: 'I agree to privacy policy & terms',
       formButton: 'REGISTER',
@@ -64,5 +66,18 @@ export default {
     subtitle: 'we couldn\'t find the page you are looking for',
     btnText: 'back to home'
   },
-  sessionExpired: 'Current Session Expired'
+  sessionExpired: 'Current Session Expired',
+  pageTitles: {
+    landing: 'SmartDesk |> Messengers Bots Contructor',
+    error: 'SmartDesk |> Error Page',
+    app: {
+      login: 'SmartDesk |> Login Page',
+      register: 'SmartDesk |> Register Page',
+      registerComplete: 'SmartDesk |> Register Completion',
+      passwordReset: 'SmartDesk |> Password Recovery',
+      passwordCreate: 'SmartDesk |> Password Create',
+      dashboard: 'SmartDesk |> Dashboard Page',
+    },
+    admin: {}
+  }
 }

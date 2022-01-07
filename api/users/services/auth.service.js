@@ -20,7 +20,7 @@ module.exports = {
             UserModel
               .findByIdAndUpdate(user._id, { $set: { authToken } }, { new: true })
               .select({ hash: 0, serviceToken: 0, authToken: 0 })
-              .populate('campaigns')
+              //.populate('campaigns')
               .exec((err, doc) => {
                 if (err) return reject(new HttpError(500, err.message));
 

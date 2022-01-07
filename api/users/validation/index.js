@@ -10,8 +10,6 @@ const loginSchema = {
 const registerSchema = {
   body: Joi.object({
     email: fields.email,
-    secret: fields.secret,
-    confirmSecret: fields.confirmSecret,
     firstName: fields.firstName,
     lastName: fields.lastName,
     language: fields.language

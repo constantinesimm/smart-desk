@@ -4,6 +4,7 @@ const {
 
 module.exports = {
   localLogin: (req, res, next) => {
+    console.log('localLogin controller before set', req.headers['accept-language'])
     authService
       .localLogin(req.body)
       .then(response => {
@@ -15,6 +16,7 @@ module.exports = {
       .catch(error => next(error));
   },
   localLogout: (req, res, next) => {
+    console.log('localLogout controller before set', req.headers['accept-language'])
     authService
       .localLogout(req.locals.userId)
       .then(response => res.json(response))

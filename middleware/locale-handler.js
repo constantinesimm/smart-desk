@@ -1,6 +1,7 @@
 const { i18n } = require('../libs');
 
 module.exports = app => {
+  app.use(i18n.init);
   app.use((req, res, next) => {
     let locale = req.headers['accept-language'];
 
@@ -10,5 +11,5 @@ module.exports = app => {
     i18n.setLocale(locale);
 
     next();
-  }).use(i18n.init);
+  })
 }
