@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store';
 
 import appRoutes from '@/router/app.routes';
 import adminRoutes from '@/router/admin.routes';
@@ -28,5 +29,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes: routes(),
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.isPublicRoute)) {
+    if (!store.getters['user/getAuthStatus']) next();
+    else next({ name: 'DashboardPage' });
+  } else if (to.matched.some(record => record.meta.isPrivateRoute)) {
+    if (!store.getters['user/getAuthStatus']) next({ name: 'LoginPage', query: { redirect: to.fullPath } })
+    else next();
+  }
+})
 
 export default router;

@@ -9,6 +9,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import vuetify from './plugins/vuetify'
 import VueSweetalert2 from 'vue-sweetalert2';
 import LottieAnimation from 'lottie-web-vue';
+import googleAuth from 'vue-google-oauth2';
 
 Vue.config.productionTip = process.env.NODE_ENV === 'development';
 
@@ -40,6 +41,12 @@ Vue.use({
       })
     };
   }
+});
+
+Vue.use(googleAuth, {
+  clientId: process.env.VUE_APP_GOOGLE_CLIENT_ID,
+  scope: 'profile email',
+  prompt: 'select_account'
 });
 
 

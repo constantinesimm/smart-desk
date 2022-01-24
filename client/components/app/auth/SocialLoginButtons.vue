@@ -21,9 +21,6 @@
   export default {
     name: 'SocialLoginButtons',
     mixins: [IconsMixin],
-    data() {
-      return {}
-    },
     computed: {
       socialLink() {
         return [
@@ -43,16 +40,17 @@
       }
     },
     mounted() {
-      console.log(process.env)
       this.loadFacebookSDK();
     },
     methods: {
       handleFacebookLogin() {
         console.log('handleFacebookLogin click')
-        window.FB.login(function(response) {
+        window.FB.login((response) => {
+          console.log('facebook login response', response)
+
           this.$store
             .dispatch('user/socialLoginFacebook', {
-              accessToken: response.authResponse.accessToken,
+              facebookAccessToken: response.authResponse.accessToken,
               facebookUserId: response.authResponse.userID
             })
             .then(response => {
@@ -61,10 +59,27 @@
               this.$router.push({ name: 'DashboardPage' });
             })
             .catch(error => this.$showError(error));
-        });
+        }, { scope: 'public_profile,email' });
       },
-      handleGoogleLogin() {
+      async handleGoogleLogin() {
         console.log('handleGoogleLogin click')
+
+        try {
+          const googleUser = await this.$gAuth.signIn();
+          const googleIdToken = googleUser.getAuthResponse().id_token;
+
+          this.$store
+            .dispatch('user/socialLoginGoogle', { googleIdToken })
+            .then(response => {
+              this.$showSuccess(response);
+
+              this.$router.push({ name: 'DashboardPage' });
+            })
+            .catch(error => this.$showError(error));
+
+        } catch (error) {
+          console.log('error', error)
+        }
       },
       loadFacebookSDK() {
         const scriptElem = document.createElement('script');
@@ -74,7 +89,7 @@
                 appId      : ${ process.env.VUE_APP_FACEBOOK_APP_ID },
                 cookie     : true,
                 xfbml      : true,
-                version    : 'v13.0'
+                version    : 'v12.0'
             });
 
             FB.AppEvents.logPageView();

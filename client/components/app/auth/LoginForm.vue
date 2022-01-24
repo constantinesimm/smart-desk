@@ -90,7 +90,11 @@
 
         this.$store
           .dispatch('user/localLogin', this.form)
-          .then(({ message }) => this.$showSuccess(message))
+          .then(({ message }) => {
+            this.$showSuccess(message);
+
+            this.$router.push({ name: 'DashboardPage' });
+          })
           .catch(error => this.$showError(error))
           .finally(() => this.triggerLoading());
       }

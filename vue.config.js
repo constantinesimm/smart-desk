@@ -14,7 +14,6 @@ module.exports = {
       disableHostCheck: true,
       clientLogLevel: 'info',
       https: true,
-
       watchOptions: {
         poll: true,
       },

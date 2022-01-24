@@ -14,6 +14,7 @@ const appRoutes = [
         component: () => import('@/components/app/auth/LoginForm'),
         meta: {
           layout: 'blank',
+          isPublicRoute: true,
           pageTitle: '$vuetify.pageTitles.app.login'
         },
       },
@@ -23,6 +24,7 @@ const appRoutes = [
         component: () => import('@/components/app/auth/RegisterForm'),
         meta: {
           layout: 'blank',
+          isPublicRoute: true,
           pageTitle: '$vuetify.pageTitles.app.register'
         },
       },
@@ -32,6 +34,7 @@ const appRoutes = [
         component: () => import('@/components/app/auth/ConfirmForm'),
         meta: {
           layout: 'blank',
+          isPublicRoute: true,
           pageTitle: '$vuetify.pageTitles.app.register'
         }
       },
@@ -41,6 +44,7 @@ const appRoutes = [
         component: () => import('@/components/app/auth/PasswordRecoveryForm'),
         meta: {
           layout: 'blank',
+          isPublicRoute: true,
           pageTitle: '$vuetify.pageTitles.app.register'
         }
       },
@@ -50,6 +54,7 @@ const appRoutes = [
         component: () => import('@/components/app/auth/ConfirmForm'),
         meta: {
           layout: 'blank',
+          isPublicRoute: true,
           pageTitle: '$vuetify.pageTitles.app.register'
         }
       },
@@ -61,6 +66,7 @@ const appRoutes = [
     component: () => import('@/views/app/DashboardPage'),
     meta: {
       layout: 'content',
+      isPrivateRoute: true,
       pageTitle: '$vuetify.pageTitles.app.dashboard'
     }
   },
