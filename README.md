@@ -1,4 +1,4 @@
-# [**Smart-Bot**](https://smart-bot.com/) Web Application
+# [**Smart-Desk**](https://smart-desk.com/) Web Application
 
 This project build using [**M**ongoDB](https://www.mongodb.com/) [**E**xpressJS](https://expressjs.com/) [**V**ueJS](https://vuejs.org/) [**N**odeJS](https://nodejs.org/en/) [**P**ostgreSQL](https://www.postgresql.org/) stack, with SPA rendered on the client side.
 

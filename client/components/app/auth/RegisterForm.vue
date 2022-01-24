@@ -54,10 +54,12 @@
             class="mt-1"
             required
           >
+            <template v-slot:label>
+              <a @click="handleTermsDialog" class="d-flex align-end justify-center" style="font-size: 12px">
+                {{ $vuetify.lang.t('$vuetify.auth.register.terms') }}
+              </a>
+            </template>
           </v-checkbox>
-          <a @click="handleTermsDialog" class="d-flex align-end justify-center" style="font-size: 12px">
-            {{ $vuetify.lang.t('$vuetify.auth.register.terms') }}
-          </a>
         </div>
 
         <v-btn

@@ -46,11 +46,7 @@ export default {
   },
   computed: {
     resolveLayout() {
-      if (this.$route.name === null) return null
-      if (this.$route.meta.layout === 'blank') return 'layout-blank'
-      if (this.$route.meta.layout === 'landing') return 'layout-landing'
-
-      return 'layout-content'
+      return `layout-${ this.$route.meta.layout }`
     },
   },
   created() {

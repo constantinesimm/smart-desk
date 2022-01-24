@@ -51,7 +51,6 @@ const ApiClient = {
   post(url, data = {}, conf = {}) {
     return httpClient.post(url, data, conf)
   }
-
 }
 
 export default ApiClient;
