@@ -5,6 +5,8 @@ export default {
   locale: {
     switcherLabel: 'Виберіть мову'
   },
+  terms: 'Угода Користувача',
+  privacyPolicy: 'Політика конфіденційності',
   auth: {
     emailLabel: 'Електронна пошта',
     secretLabel: 'Пароль',
@@ -25,15 +27,15 @@ export default {
       },
     },
     login: {
-      title: 'Вітаємо у SmartDesk!',
-      subtitle: 'Увійдіть у свій обліковий запис і розпочніть пригоду',
+      title: 'Авторизацiя',
+      subtitle: 'Увійдіть у свій обліковий запис',
       forgotPassLink: 'Забули пароль?',
       formButton: 'УВІЙТИ',
       registerQuestion: 'Вперше на нашій платформі?',
       registerLink: 'Створити обліковий запис',
     },
     register: {
-      title: 'Пригоди починаються тут',
+      title: 'Вітаємо у SmartDesk!',
       subtitle: 'Зробіть керування вашим додатком легким і цікавим!',
       terms: 'Погоджуюсь з умовами i полiтикою конфiденцiйностi',
       formButton: 'РЕЄСТРАЦІЯ',
@@ -64,5 +66,18 @@ export default {
     subtitle: 'ми не змогли знайти сторінку, яку ви шукаєте',
     btnText: 'домашня сторінка'
   },
-  sessionExpired: 'Поточний сеанс закінчився'
+  sessionExpired: 'Поточний сеанс закінчився',
+  pageTitles: {
+    landing: 'SmartDesk |> Конструктор ботів месенджерів',
+    error: 'SmartDesk |> Сторінка помилок',
+    app: {
+      login: 'SmartDesk |> Авторизацiя',
+      register: 'SmartDesk |> Реєстрація',
+      registerComplete: 'SmartDesk |> Завершення реєстрації',
+      passwordReset: 'SmartDesk |> Відновлення паролю',
+      passwordCreate: 'SmartDesk |> Створити пароль',
+      dashboard: 'SmartDesk |> Iнформаційна панель',
+    },
+    admin: {}
+  }
 }

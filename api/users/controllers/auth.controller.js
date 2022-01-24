@@ -4,11 +4,14 @@ const {
 
 module.exports = {
   localLogin: (req, res, next) => {
+    console.log('localLogin controller before set', req.headers['accept-language'])
     authService
       .localLogin(req.body)
       .then(response => {
-        res.setHeader('authorization', response.token);
-        res.setHeader('accept-language', response.user.language);
+        if (response.action === 'sign-in') {
+          res.setHeader('authorization', response.token);
+          res.setHeader('accept-language', response.user.language);
+        }
 
         return res.json(response);
       })
@@ -52,14 +55,24 @@ module.exports = {
   },
   socialLoginGoogle: (req, res, next) => {
     authService
-      .socialLoginGoogle(req.locals.userId, req.body.token)
-      .then(response => res.json(response))
+      .socialLoginGoogle({ ...req.body, language: req.headers['accept-language'] })
+      .then(response => {
+        res.setHeader('authorization', response.token);
+        res.setHeader('accept-language', response.user.language);
+
+        return res.json(response);
+      })
       .catch(error => next(error));
   },
   socialLoginFacebook: (req, res, next) => {
     authService
-      .socialLoginFacebook(req.locals.userId, req.body.token)
-      .then(response => res.json(response))
+      .socialLoginFacebook({ ...req.body, language: req.headers['accept-language'] })
+      .then(response => {
+        res.setHeader('authorization', response.token);
+        res.setHeader('accept-language', response.user.language);
+
+        return res.json(response);
+      })
       .catch(error => next(error));
   }
 }

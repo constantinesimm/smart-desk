@@ -22,10 +22,9 @@ const mutations = {
     state.isAuthenticated = true;
   },
   SET_LOGOUT(state, payload) {
-    state = payload;
-  },
-  SESSION_EXPIRED(state, payload) {
-    state = payload;
+    state.authToken = payload.authToken;
+    state.isAuthenticated = payload.isAuthenticated;
+    state.user = payload.user;
   },
 };
 
@@ -35,12 +34,14 @@ const actions = {
       AuthService
         .localLogin(data)
         .then(response => {
-          const { message, token, user } = response.data;
+          const { message, action, token, user } = response.data;
 
-          commit('SET_AUTH_TOKEN', token);
-          commit('SET_USER', user);
-          if (rootState.app.selectedLang !== user.language) {
-            commit('app/CHANGE_LOCALE', user.language, { root: true });
+          if (action === 'sign-in') {
+            commit('SET_AUTH_TOKEN', token);
+            commit('SET_USER', user);
+            if (rootState.app.selectedLang !== user.language) {
+              commit('app/CHANGE_LOCALE', user.language, { root: true });
+            }
           }
 
           return resolve({ message });
@@ -124,25 +125,53 @@ const actions = {
         .catch(error => reject(error.message));
     })
   },
-  socialLoginGoogle({ commit }, data) {
+  socialLoginGoogle({ commit, rootState }, data) {
     return new Promise((resolve, reject) => {
+      AuthService
+        .socialLoginGoogle(data)
+        .then(response => {
+          const { message, token, user } = response.data;
 
+          commit('SET_AUTH_TOKEN', token);
+          commit('SET_USER', user);
+          if (rootState.app.selectedLang !== user.language) {
+            commit('app/CHANGE_LOCALE', user.language, { root: true });
+          }
+
+          return resolve(message);
+        })
+        .catch(error => reject(error.message));
     })
   },
-  socialLoginFacebook({ commit }, data) {
+  socialLoginFacebook({ commit, rootState }, data) {
     return new Promise((resolve, reject) => {
+      AuthService
+        .socialLoginFacebook(data)
+        .then(response => {
+          const { message, token, user } = response.data;
 
+          commit('SET_AUTH_TOKEN', token);
+          commit('SET_USER', user);
+          if (rootState.app.selectedLang !== user.language) {
+            commit('app/CHANGE_LOCALE', user.language, { root: true });
+          }
+
+          return resolve(message);
+        })
+        .catch(error => reject(error.message));
     })
   },
   sessionExpired({ commit }, errMessage) {
     this._vm.$showError(errMessage);
-    commit('SESSION_EXPIRED', initialState);
+    commit('SET_LOGOUT', initialState);
+    router.replace('/auth/login');
   }
 };
 
 const getters = {
   getAuthToken: state => state.authToken,
   getUser: state => state.user,
+  getAuthStatus: state => state.isAuthenticated
 };
 
 export default  {

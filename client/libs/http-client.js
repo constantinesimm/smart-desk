@@ -27,9 +27,12 @@ httpClient.interceptors.response.use(response => {
 }, error => {
   const { data, status } = error.response;
 
-  if (status === 401) store.dispatch('user/sessionExpired');
-
-  return Promise.reject(data);
+  if (status === 401) {
+    return store
+      .dispatch('user/sessionExpired', data)
+      .then(() => Promise.reject(data))
+      .catch(() => Promise.reject(data));
+  } else return Promise.reject(data);
 })
 
 const ApiClient = {
@@ -48,7 +51,6 @@ const ApiClient = {
   post(url, data = {}, conf = {}) {
     return httpClient.post(url, data, conf)
   }
-
 }
 
 export default ApiClient;

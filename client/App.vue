@@ -1,5 +1,5 @@
 <template>
-  <div id="smartBot-app">
+  <div id="smartDesk-app">
     <component :is="resolveLayout">
       <transition
         name="fade"
@@ -11,32 +11,51 @@
         <router-view/>
       </transition>
     </component>
+    <terms-and-privacy-policy-dialog v-if="isTermsAndPolicyDialogVisible"/>
   </div>
 </template>
 
 <script>
 const LayoutBlank = () => import('@/layouts/Blank.vue')
 const LayoutContent = () => import('@/layouts/Content.vue')
+const LayoutLanding = () => import('@/layouts/Landing.vue')
+const TermsAndPrivacyPolicyDialog = () => import('@/components/core/TermsAndPrivacyPolicyDialog');
 
 export default {
   name: 'App',
-  components: { LayoutBlank, LayoutContent },
+  components: {
+    LayoutBlank,
+    LayoutContent,
+    LayoutLanding,
+    TermsAndPrivacyPolicyDialog
+  },
   data() {
-    return {}
+    return {
+      isTermsAndPolicyDialogVisible: false
+    }
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to, from) {
+        if (to.matched.some(record => record.meta.pageTitle)) {
+          document.title = this.$vuetify.lang.t(to.meta.pageTitle);
+        }
+      }
+    }
   },
   computed: {
     resolveLayout() {
-      if (this.$route.name === null) return null
-      if (this.$route.meta.layout === 'blank') return 'layout-blank'
-
-      return 'layout-content'
+      return `layout-${ this.$route.meta.layout }`
     },
   },
   created() {
-    this.$eventHub.$on('session-expired-tooltip', this.handleExpiredSession)
+    this.$eventHub.$on('session-expired-tooltip', this.handleExpiredSession);
+    this.$eventHub.$on('handle-terms-and-privacy', this.handlePrivacyDialogVisible);
   },
   beforeDestroy() {
     this.$eventHub.$off('session-expired-tooltip');
+    this.$eventHub.$off('handle-terms-and-privacy')
   },
   methods: {
     handleExpiredSession() {
@@ -46,6 +65,9 @@ export default {
       setTimeout(() => {
         this.$router.push({ name: 'LoginPage' });
       }, 2000);
+    },
+    handlePrivacyDialogVisible() {
+      this.isTermsAndPolicyDialogVisible = !this.isTermsAndPolicyDialogVisible;
     },
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
@@ -67,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss">
-#smartBot-app {
+#smartDesk-app {
   background: #f4f5fa;
 }
 

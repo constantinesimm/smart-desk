@@ -59,5 +59,8 @@ module.exports = {
   secretKeys: {
     pass: process.env.PASS_HASH_KEY,
     token: process.env.TOKEN_HASH_KEY
+  },
+  vendors: {
+    googleClientId: process.env.VUE_APP_GOOGLE_CLIENT_ID
   }
 }

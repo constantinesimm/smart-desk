@@ -2,10 +2,10 @@ const i18n = require('i18n');
 const { join } = require('path');
 
 i18n.configure({
-  locales: ['en', 'uk', 'ru'],
+  locales: ['en', 'ru', 'uk'],
   defaultLocale: 'en',
-  directory: join(__dirname, 'locales'),
-  header: 'accept-language',
+  directory: join(__dirname, '/locales'),
+  header: 'Accept-Language',
   register: global,
 });
 

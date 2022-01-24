@@ -1,10 +1,12 @@
+
 const landingRoutes = [
   {
     path: '/',
     name: 'LandingPage',
     component: () => import('../views/landing/LandingPage'),
     meta: {
-      layout: 'blank'
+      layout: 'landing',
+      pageTitle: '$vuetify.pageTitles.landing'
     }
   },
   {
@@ -12,7 +14,8 @@ const landingRoutes = [
     name: 'ErrorPage',
     component: () => import('@/views/ErrorPage'),
     meta: {
-      layout: 'blank'
+      layout: 'blank',
+      pageTitle: '$vuetify.pageTitles.error'
     }
   }
 ];

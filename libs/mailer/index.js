@@ -11,11 +11,13 @@ const {
 
 const clientPagesUrl = {
   register: `${ baseUrl }/auth/register/confirm`,
+  passwordCreate: `${ baseUrl }/auth/password/change`,
   passwordRecovery: `${ baseUrl }/auth/password/change`
 };
 
 const emailTemplatePath = {
   register: join(__dirname, '/templates/auth-confirm-template.pug'),
+  passwordCreate: join(__dirname, '/templates/auth-confirm-template.pug'),
   passwordRecovery: join(__dirname, '/templates/auth-confirm-template.pug')
 };
 
