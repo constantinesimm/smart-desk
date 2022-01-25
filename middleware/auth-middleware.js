@@ -35,5 +35,35 @@ module.exports = {
 
         return next();
       })
+  },
+  adminRoute: (req, res, next) => {
+    const authToken = req.headers['authorization'];
+    const userLocale = req.headers['accept-language'];
+    if (!authToken) return next(new HttpError(401, i18n.__('auth.midware.adminRoute')));
+
+    const { userId, userEmail } = jwt.verifyToken(authToken);
+    if (!userId || !userEmail) return next(new HttpError(401, jwt.verifyToken(authToken).message))
+
+    UserModel
+      .findOne({
+        $and: [
+          { _id: userId },
+          { email: userEmail },
+          { authToken }
+        ]
+      }, (err, user) => {
+        if (err) return next(new HttpError(500, err.message));
+        if (!user) return next(new HttpError(403, i18n.__('auth.midware.userNotFound')));
+        if (user.role !== 'admin') return next(new HttpError(403, i18n.__('auth.midware.adminRequired')))
+
+        req.locals = {
+          userId,
+          userEmail,
+          userLocale,
+          role: user.role
+        };
+
+        return next();
+      })
   }
 }

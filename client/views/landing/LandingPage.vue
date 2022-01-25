@@ -9,7 +9,7 @@
 
       <advantages-block />
 
-      <solutions-block style="background: #f2f2f2"  />
+      <solutions-block />
 
       <prices-block />
     </v-main>

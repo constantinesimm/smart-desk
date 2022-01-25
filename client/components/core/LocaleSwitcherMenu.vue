@@ -11,9 +11,9 @@
             v-on="on"
             v-bind="attrs"
           >
-            <img v-if="checkViewMode.icon || checkViewMode.full" height="25" width="25" :src="localesList[selectedLocale].icon" :class="{'mr-3': checkViewMode.full }" />
+            <img v-if="checkViewMode.icon || checkViewMode.full" height="25" width="25" :src="setActualLocale.icon" :class="{'mr-3': checkViewMode.full }" />
 
-            <span v-if="checkViewMode.label || checkViewMode.full">{{ localesList[selectedLocale].label }}</span>
+            <span v-if="checkViewMode.label || checkViewMode.full" :style="{color: getTitleColor}">{{ setActualLocale.label }}</span>
           </v-btn>
         </template>
 
@@ -51,6 +51,11 @@
         enum: ['icon', 'label', 'full'],
         default: 'full'
       },
+      titleColor: {
+        type: String,
+        enum: ['primary', 'white'],
+        default: 'white'
+      },
       dividerVisible: {
         type: Boolean,
         default: false
@@ -82,12 +87,21 @@
       verticalDivider() {
         return this.dividerDirection === 'vertical'
       },
+      getTitleColor() {
+        if (this.titleColor === 'primary') return '#0d47a1';
+        else return '#ffffff';
+      },
       localesList() {
         return [
           { label: 'English', value: 'en', icon: this.flags.enFlagIcon },
           { label: 'Українська', value: 'uk', icon: this.flags.ukFlagIcon },
           { label: 'Русский', value: 'ru', icon: this.flags.ruFlagIcon },
         ]
+      },
+      setActualLocale() {
+        const actualLocaleIdx = this.localesList.findIndex(l => l.value === this.appStateLocale);
+
+        return this.localesList[actualLocaleIdx];
       }
     },
     mounted() {
@@ -107,7 +121,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

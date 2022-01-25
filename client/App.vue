@@ -14,7 +14,7 @@
       </transition>
     </component>
 
-    <terms-and-privacy-policy-dialog v-if="isTermsAndPolicyDialogVisible"/>
+    <terms-and-privacy-policy-dialog v-if="isTermsAndPolicyDialogVisible" :show-tab="isTermsAndPolicyDialogTab" />
   </div>
 </template>
 
@@ -34,7 +34,8 @@ export default {
   },
   data() {
     return {
-      isTermsAndPolicyDialogVisible: false
+      isTermsAndPolicyDialogVisible: false,
+      isTermsAndPolicyDialogTab: null
     }
   },
   watch: {
@@ -76,8 +77,11 @@ export default {
         this.$router.push({ name: 'LoginPage' });
       }, 2000);
     },
-    handlePrivacyDialogVisible() {
+    handlePrivacyDialogVisible(tab) {
+      if (tab) this.isTermsAndPolicyDialogTab = Number(tab);
       this.isTermsAndPolicyDialogVisible = !this.isTermsAndPolicyDialogVisible;
+
+      if (!this.isTermsAndPolicyDialogVisible) this.isTermsAndPolicyDialogTab = null;
     },
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;

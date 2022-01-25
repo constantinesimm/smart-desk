@@ -279,10 +279,11 @@
 <script>
   export default {
     name: 'TermsAndPrivacyPolicyDialog',
+    props: ['showTab'],
     data() {
       return {
         isVisible: true,
-        currentTab: ''
+        currentTab: this.showTab
       }
     },
     computed: {
@@ -295,7 +296,10 @@
         if (!newVal && newVal !== oldVal) {
           this.$eventHub.$emit('handle-terms-and-privacy')
         }
-      }
+      },
+    },
+    mounted() {
+      if (this.showTab) this.currentTab = this.showTab;
     }
   }
 </script>

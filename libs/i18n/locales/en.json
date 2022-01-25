@@ -8,6 +8,8 @@
 	"auth.midware.privateRoute": "Page available only for authenticated users",
 	"auth.midware.publicRoute": "Page available only for guest users",
 	"auth.midware.userNotFound": "User not found or hasn't not created yet",
+	"auth.midware.adminRoute": "Page available only for admin user role",
+	"auth.midware.adminRequired": "Forbidden! Insufficient access rights",
 	"auth.error.userNotFound": "User not found or hasn't not created yet",
 	"auth.error.notVerified": "Please, confirm your email",
 	"auth.error.invalidCredentials": "Email or password is incorrect",
@@ -44,5 +46,6 @@
 	"email.passwordRecovery.hint": "We’re here to help. Click on the button below to change your password.",
 	"email.passwordRecovery.button": "Recover my password",
 	"email.passwordRecovery.warning": "If you didn’t ask to recover your password, please ignore this email.",
-	"email.passwordRecovery.description": "You receive this email because you or someone initiated a password recovery operation on your SmartDesk account."
+	"email.passwordRecovery.description": "You receive this email because you or someone initiated a password recovery operation on your SmartDesk account.",
+	"billing.paymentPlan.create": "New Payment Plan data successful created"
 }

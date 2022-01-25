@@ -8,6 +8,8 @@
   "auth.midware.privateRoute": "Страница доступна только для авторизованных пользователей",
   "auth.midware.publicRoute": "Страница доступна только для гостевых пользователей",
   "auth.midware.userNotFound": "Пользователь не найден или еще не создан",
+  "auth.midware.adminRoute": "Страница доступна только для администратора",
+  "auth.midware.adminRequired": "Запрещено! Недостаточно прав доступа",
   "auth.error.userNotFound": "Пользователь не найден или еще не создан",
   "auth.error.notVerified": "Подтвердите адрес электронной почты",
   "auth.error.invalidCredentials": "Неверный адрес электронной почты или пароль",
@@ -44,5 +46,6 @@
   "email.passwordRecovery.hint": "Мы готовы помочь. Нажмите кнопку ниже, чтобы создать новый пароль.",
   "email.passwordRecovery.button": "Восстановить мой пароль",
   "email.passwordRecovery.warning": "Если вы не просили восстановить пароль, не обращайте внимания на это письмо.",
-  "email.passwordRecovery.description": "Вы получили это письмо, потому что вы или кто-то инициировал операцию восстановления пароля для вашей учетной записи SmartDesk."
+  "email.passwordRecovery.description": "Вы получили это письмо, потому что вы или кто-то инициировал операцию восстановления пароля для вашей учетной записи SmartDesk.",
+  "billing.paymentPlan.create": "Данные нового плана платежей успешно созданы"
 }

@@ -1,48 +1,48 @@
-const { validator: { Joi, fields, validate } } = require('../../../libs');
+const { validator: { Joi, userFields, validate } } = require('../../../libs');
 
 const loginSchema = {
   body: Joi.object({
-    email: fields.email,
-    secret: fields.secret
+    email: userFields.email,
+    secret: userFields.secret
   })
 };
 
 const registerSchema = {
   body: Joi.object({
-    email: fields.email,
-    firstName: fields.firstName,
-    lastName: fields.lastName,
-    language: fields.language
+    email: userFields.email,
+    firstName: userFields.firstName,
+    lastName: userFields.lastName,
+    language: userFields.language
   })
 };
 
 const registerConfirmSchema = {
   body: Joi.object({
-    userId: fields.userId,
-    email: fields.email,
-    secret: fields.secret,
-    confirmSecret: fields.confirmSecret
+    userId: userFields.userId,
+    email: userFields.email,
+    secret: userFields.secret,
+    confirmSecret: userFields.confirmSecret
   })
 };
 
 const passwordResetSchema = {
   body: Joi.object({
-    email: fields.email,
+    email: userFields.email,
   })
 };
 
 const passwordUpdateSchema = {
   body: Joi.object({
-    userId: fields.userId,
-    email: fields.email,
-    secret: fields.secret,
-    confirmSecret: fields.confirmSecret
+    userId: userFields.userId,
+    email: userFields.email,
+    secret: userFields.secret,
+    confirmSecret: userFields.confirmSecret
   })
 };
 
 const verificateTokenSchema = {
   params: Joi.object({
-    token: fields.token
+    token: userFields.token
   })
 };
 

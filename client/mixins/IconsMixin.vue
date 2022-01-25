@@ -4,12 +4,18 @@
   import ruFlagIcon from '@/assets/images/flags/ru.png';
 
   import descriptionChatbot from '@/assets/images/landing/description-chatbot.jpeg';
+  import advantagesBotBackground from '@/assets/images/landing/bot-image.svg';
   import automationIcon from '@/assets/images/landing/icons/automation.png';
-  import communicationIcon from '@/assets/images/landing/icons/communication.png'
-  import efficiencyIcon from '@/assets/images/landing/icons/efficiency.jpg'
-  import marketingIcon from '@/assets/images/landing/icons/marketing.png'
-  import salesIcon from '@/assets/images/landing/icons/sales.png'
-  import supportIcon from '@/assets/images/landing/icons/support.png'
+  import communicationIcon from '@/assets/images/landing/icons/communication.png';
+  import efficiencyIcon from '@/assets/images/landing/icons/efficiency.jpg';
+  import marketingIcon from '@/assets/images/landing/icons/marketing.png';
+  import salesIcon from '@/assets/images/landing/icons/sales.png';
+  import supportIcon from '@/assets/images/landing/icons/support.png';
+
+  import solutionsSegmentAndMailing from '@/assets/images/landing/solutions-segment-and-mailing.svg';
+  import solutionsStatistics from '@/assets/images/landing/solutions-statistics.png'
+  import solutionsVisualRedactor from '@/assets/images/landing/solutions-visual-redactor.png'
+  import solutionsChatCommunicate from '@/assets/images/landing/solutions-chat-communicate.jpg'
 
   import {
     mdiAlert,
@@ -57,6 +63,11 @@
         },
         landing: {
           descriptionChatbot,
+          advantagesBotBackground,
+          solutionsSegmentAndMailing,
+          solutionsStatistics,
+          solutionsChatCommunicate,
+          solutionsVisualRedactor,
           icons: {
             communicationIcon,
             efficiencyIcon,

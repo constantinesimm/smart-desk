@@ -1,67 +1,106 @@
 <template>
-  <div class="landing-solutions-container">
-    <div class="landing-solutions-chatbot">
-      <h3 class="landing-solutions-chatbot-title">
-        Все необходимые инструменты
-      </h3>
-      <p class="landing-solutions-chatbot-subtitle">
-        Для создания функционального чат-бота и мессенджер-маркетинга
-      </p>
-      <div class="landing-solutions-chatbot-features">
-        <div class="landing-solutions-chatbot-features-row">
-          <div class="landing-solutions-chatbot-features-img features-column">
-
+  <div class="block-wrapper">
+    <v-container>
+      <v-row class="mb-10">
+        <v-col>
+          <h2 class="pb-5">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.title') }}
+          </h2>
+          <div class="subtitle">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.subtitle') }}
           </div>
-          <div class="landing-solutions-chatbot-features-description features-column">
-            <div class="title">Соберите чат-бота в визуальном редакторе</div>
-            <div class="text">Не нужно знать программирование, чтобы создать бота в Botmother. Придумайте сценарий работы бота, выберите нужные компоненты и свяжите их между собой в визуальном редакторе.</div>
+        </v-col>
+      </v-row>
+
+      <v-divider inset />
+
+      <v-row justify="center" class="mt-5 mb-5">
+        <v-col cols="4">
+          <img :src="landing.solutionsVisualRedactor" width="300px" />
+        </v-col>
+
+        <v-col cols="4">
+          <h5 class="title">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.visualRedactor.title') }}
+          </h5>
+          <div class="text">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.visualRedactor.text') }}
           </div>
-        </div>
+        </v-col>
+      </v-row>
 
-        <div class="landing-solutions-chatbot-features-row">
-          <div class="landing-solutions-chatbot-features-img features-column">
+      <v-divider inset />
 
+      <v-row justify="center" class="mt-5 mb-5">
+        <v-col cols="4" align-self="center">
+          <h5 class="title">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.chatCommunicate.title') }}
+          </h5>
+          <div class="text" v-html="$vuetify.lang.t('$vuetify.landing.solutionsBlock.chatCommunicate.text')" />
+        </v-col>
+
+        <v-col cols="4">
+          <img :src="landing.solutionsChatCommunicate" width="300px" />
+        </v-col>
+      </v-row>
+
+      <v-divider inset />
+
+      <v-row justify="center" class="mt-5 mb-5">
+        <v-col cols="4">
+          <img :src="landing.solutionsStatistics" width="300px" />
+        </v-col>
+
+        <v-col cols="4">
+          <h5 class="title">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.gatherStatistics.title') }}
+          </h5>
+          <div class="text">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.gatherStatistics.text') }}
           </div>
-          <div class="landing-solutions-chatbot-features-description features-column">
-            <div class="title">Общайтесь с клиентами в чате</div>
-            <div class="text">Удерживайте клиентов, даже если бот не справился. Узнавайте вовремя об ошибках и обрабатывайте все обращения. А ещё всегда можно посмотреть историю общения человека с ботом.
+        </v-col>
+      </v-row>
 
-              Подключите своего сотрудника к общению с бот-клиентом — чтобы вы не потеряли клиента и не допустили негатива, если бот ничего не понял.</div>
+      <v-divider inset />
+
+      <v-row justify="center" align-content="center" class="mt-5">
+        <v-col cols="4">
+          <h5 class="title">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.segmentUsers.title') }}
+          </h5>
+          <div class="text">
+            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.segmentUsers.text') }}
           </div>
-        </div>
+        </v-col>
 
-        <div class="landing-solutions-chatbot-features-row">
-          <div class="landing-solutions-chatbot-features-img features-column"></div>
-          <div class="landing-solutions-chatbot-features-description features-column">
-            <div class="title">Собирайте статистику</div>
-            <div class="text">
-              Принимайте решения на основании чисел. Раздел статистики даст полезную информацию о пользователях. Вы всегда сможете отследить, на каком этапе теряются пользователи, и улучшить бота. Так вы не потратите рекламный бюджет впустую.
-            </div>
-        </div>
-
-        <div class="landing-solutions-chatbot-features-row">
-          <div class="landing-solutions-chatbot-features-img features-column"></div>
-          <div class="landing-solutions-chatbot-features-description features-column">
-            <div class="title">Сегментируйте пользователей и отправляйте рассылки</div>
-            <div class="text">
-              Не ждите, пока пользователь снова напишет боту — отправьте ему новости и предложения. Группируйте пользователей метками и отправляйте только интересный контент.
-
-              Можно отправить рассылку прямо сейчас, в запланированное время, через заданное время после действия или настроить периодическую отправку.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+        <v-col cols="4">
+          <img src="https://d2s30hray1l0uq.cloudfront.net/frontend/Customer-Segmentation.jpg" width="300px" />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'SolutionsBlock'
-}
+  import IconsMixin from '@/mixins/IconsMixin';
+
+  export default {
+    name: 'SolutionsBlock',
+    mixins: [IconsMixin]
+  }
 </script>
 
 <style lang="scss" scoped>
-
+  .block-wrapper {
+    padding: 50px 0;
+  }
+  .title {
+    font-size: 16px!important;
+    font-weight: bold;
+    text-align: left;
+  }
+  .text {
+    font-size: 14px;
+    text-align: left;
+  }
 </style>
