@@ -1,11 +1,11 @@
 <template>
-  <div> PricesBlock </div>
+  <v-footer></v-footer>
 </template>
 
 <script>
-export default {
-  name: 'PricesBlock'
-}
+  export default {
+    name: 'LandingFooter'
+  }
 </script>
 
 <style lang="scss" scoped>

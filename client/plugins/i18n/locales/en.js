@@ -79,5 +79,55 @@ export default {
       dashboard: 'SmartDesk |> Dashboard Page',
     },
     admin: {}
+  },
+  landing: {
+    header: {
+      links: {
+        advantages: 'Features',
+        solutions: 'Solutions',
+        prices: 'Pricing',
+        login: 'Log In',
+        register: 'Register'
+      }
+    },
+    welcomeBlock: {
+      title: 'Smart messenger bot builder: <br> <b>Telegram</b>, <b>Viber</b>, <b>Facebook</b>',
+      subtitle: 'Create bots of any complexity for popular messengers <b class="text-decoration-underline">without programming</b>',
+      button: 'Try for free'
+    },
+    descriptionBlock: {
+      chatbot: {
+        title: 'What is a chatbot?',
+        text: '<b>Chatbot</b> - is a small mobile app in Messenger.<br>You can use it as an additional channel or completely replace the mobile application with it. No installation required. <br> If your client already has a messenger, he can find your bot and start using it right away.'
+      },
+      opportunity: {
+        title: 'Chatbot Features',
+        subtitle: 'Virtually limitless: From product/service navigation to complete automation of your business.',
+        automation: {
+          title: 'Automation',
+          text: 'Create new sales channels and serve your customers without involving additional people.<br>The robot will guide the customer through the necessary steps.'
+        },
+        support: {
+          title: 'Support',
+          text: 'Easily organize live chat support with helpdesk tools.'
+        },
+        sales: {
+          title: 'Sales',
+          text: 'Sell the most popular products in a few clicks.'
+        },
+        communication: {
+          title: 'Communication',
+          text: 'Communicate with your customers where it suits them.'
+        },
+        marketing: {
+          title: 'Marketing',
+          text: 'Test your hypotheses quickly.'
+        },
+        efficiency: {
+          title: 'Efficiency',
+          text: 'Create powerful tools and applications for your business and office.'
+        },
+      }
+    }
   }
 }

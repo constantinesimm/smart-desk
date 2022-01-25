@@ -2,7 +2,11 @@
 
 // ? This includes dark theme related style
 .v-application {
+  font-family: "Ubuntu", sans-serif!important;
+
   &.theme--dark {
+    font-family: "Ubuntu", sans-serif!important;
+
     @at-root {
       .v-alert {
         &.v-sheet.theme--dark {
@@ -33,6 +37,8 @@
 // ————————————————————————————————————
 
 .v-application.theme--dark {
+  font-family: "Ubuntu", sans-serif!important;
+
   .ps__rail-y,
   .ps__rail-x {
     background-color: transparent !important;

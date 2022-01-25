@@ -53,7 +53,7 @@
 
     <v-main>
       <div class="app-content-container boxed-container pa-6">
-        <slot></slot>
+        <router-view />
       </div>
     </v-main>
 
@@ -106,7 +106,7 @@ const AppBarUserMenu = () => import('@/layouts/components/AppBarUserMenu')
 const ThemeSwitcher = () => import('@/layouts/components/ThemeSwitcher')
 
 export default {
-  name: 'Content',
+  name: 'ContentLayout',
   components: {
     AppBarUserMenu,
     VerticalNavMenu,
