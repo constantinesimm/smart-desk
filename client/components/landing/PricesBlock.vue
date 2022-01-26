@@ -92,7 +92,7 @@
                 <v-card class="pricing-plans-items__card">
                   <v-card-text class="pricing-plans-items__card-header">
                     <div class="d-flex justify-center">
-                      <payment-plan-logotype-animation :anim-type="planName" width="200" height="200" />
+                      <AnimatedLogotypes :animation-file="planName" :width="200" :height="200" />
                     </div>
                     <h1 :class="['text-2xl font-weight-medium', `text-color__${ planName === 'padawan' ? 'success' : planName === 'jedi' ? 'primary' : 'secondary' }`]"> {{ plansDescription[planName].title }} </h1>
                     <p>{{ plansDescription[planName].description }}</p>
@@ -167,7 +167,7 @@
                   </a>
                 </div>
 
-                <logotype-animation height="150" width="150" />
+                <AnimatedLogotypes animation-file="appLogoBot" :height="150" :width="150" />
               </div>
             </v-col>
           </v-row>
@@ -178,14 +178,12 @@
 </template>
 
 <script>
-  const LogotypeAnimation = () => import('@/components/core/LogotypeAnimation');
-  const PaymentPlanLogotypeAnimation = () => import('@/components/core/PaymentPlanLogotypeAnimation');
+  const AnimatedLogotypes = () => import('@/components/core/AnimatedLogotypes');
 
   export default {
     name: 'PricesBlock',
     components: {
-      LogotypeAnimation,
-      PaymentPlanLogotypeAnimation
+      AnimatedLogotypes,
     },
     data() {
       return {

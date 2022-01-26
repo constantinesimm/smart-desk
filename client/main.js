@@ -55,4 +55,4 @@ new Vue({
   router,
   store,
   render: h => h(App),
-}).$mount('#smartDesk-app')
+}).$mount('#app')

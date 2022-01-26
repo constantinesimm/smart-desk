@@ -1,21 +1,17 @@
 <template>
-  <v-app>
-    <landing-header style="position:fixed;top: 0; background: #0f4cb5"/>
+  <v-container fluid>
+    <welcome-block />
 
-    <v-main class="main-content">
-      <welcome-block />
+    <descriptions-block />
 
-      <descriptions-block />
+    <advantages-block />
 
-      <advantages-block />
+    <solutions-block />
 
-      <solutions-block />
-
-      <prices-block />
-    </v-main>
-
-    <landing-footer />
-  </v-app>
+    <!--
+    <prices-block />
+    -->
+  </v-container>
 </template>
 
 <script>
@@ -24,7 +20,7 @@ const LandingFooter = () => import('@/components/landing/core/LandingFooter');
 const WelcomeBlock = () => import('@/components/landing/WelcomeBlock');
 const AdvantagesBlock = () => import('@/components/landing/AdvantagesBlock');
 const DescriptionsBlock = () => import('@/components/landing/DescriptionBlock');
-const PricesBlock = () => import('@/components/landing/PricesBlock');
+//const PricesBlock = () => import('@/components/landing/PricesBlock');
 const SolutionsBlock = () => import('@/components/landing/SolutionsBlock');
 
 export default {
@@ -35,19 +31,12 @@ export default {
     WelcomeBlock,
     AdvantagesBlock,
     DescriptionsBlock,
-    PricesBlock,
+    //PricesBlock,
     SolutionsBlock
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .main-content {
-    padding: 0!important;
-  }
 
-  .fixed-top {
-    position: fixed;
-    top: 0;
-  }
 </style>

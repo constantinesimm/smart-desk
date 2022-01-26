@@ -1,5 +1,5 @@
 <template>
-  <div id="smartDesk-app">
+  <div id="app">
     <component :is="resolveLayout">
       <transition
         name="fade"
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+const LandingLayout = () => import('@/layouts/LandingLayout');
 const IndexLayout = () => import('@/layouts/IndexLayout');
 const BlankLayout = () => import('@/layouts/BlankLayout');
 const ContentLayout = () => import('@/layouts/ContentLayout');
@@ -30,6 +31,7 @@ export default {
     IndexLayout,
     BlankLayout,
     ContentLayout,
+    LandingLayout,
     TermsAndPrivacyPolicyDialog
   },
   data() {

@@ -1,4 +1,4 @@
-import './overrides.scss'
+
 
 export default {
   theme: {

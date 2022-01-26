@@ -161,14 +161,18 @@ export default {
     pricingBlock: {
       title: 'Pricing Plans',
       subtitle: 'Choose the plan that best suits your needs.',
-      paymentPeriodTitle: 'Choose payment period. <br> <div class="d-flex flex-row justify-center text-decoration-underline" style="font-size: 14px"><b>P.S. Annual payment is 20% cheaper</b></div>',
       paymentPeriodYear: 'Year',
       paymentPeriodMonth: 'Month',
-      selectBots: 'Select the messengers that will participate in the project',
+      paymentIncentive: 'Payment with a benefit of 20%',
+      monthlyFeePayment: 'Monthly fee',
+      planPeriods: {
+        month: 'per month',
+        year: 'per year'
+      },
       plans: {
         features: {
-          demoBotsTitle: 'Number of demo bots',
-          realBotsTitle: 'Number of production bots',
+          demoBots: 'Demo bots count',
+          realBots: 'Production bots count',
           botsConstructor: 'Graphic Designer',
           botsAnalytics: 'Analytics Section',
           customersMailing: 'Mailing to customers',
@@ -185,9 +189,9 @@ export default {
           title: 'Jedi',
           description: 'Tariff for sure'
         },
-        yoda: {
-          title: 'Master Yoda',
-          description: 'Tariff for professionals'
+        master: {
+          title: 'Master',
+          description: 'Rate for professionals'
         }
       },
       newbieOffer: {

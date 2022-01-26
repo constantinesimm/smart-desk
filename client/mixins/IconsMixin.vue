@@ -18,6 +18,8 @@
   import solutionsChatCommunicate from '@/assets/images/landing/solutions-chat-communicate.jpg'
 
   import {
+    mdiCashMultiple,
+    mdiFire,
     mdiAlert,
     mdiCloseThick,
     mdiFacebook,
@@ -40,6 +42,8 @@
     data() {
       return {
         icons: {
+          mdiFire,
+          mdiCashMultiple,
           mdiAlert,
           mdiCloseThick,
           mdiFacebook,

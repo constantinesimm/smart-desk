@@ -1,4 +1,4 @@
-export default [
+const routes = [
   {
     path: '/',
     redirect: { name: 'DashboardPage' },
@@ -80,3 +80,5 @@ export default [
     }
   }
 ];
+
+export default routes;

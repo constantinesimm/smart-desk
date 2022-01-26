@@ -14,14 +14,20 @@ const userFields = {
   role: Joi.any().allow('customer', 'admin'),
 }
 
-const billingFields = {
-  yearDiscount: Joi.number().min(5).max(20).required(),
-  coupleMessengersDiscount: Joi.number().min(1.5).max(2.5).required(),
-  tripleMessengersDiscount: Joi.number().min(3).max(5).required(),
-  yearlyPeriod: Joi.number().equal(365).required(),
-  monthlyPeriod: Joi.number().equal(30).required(),
-  messengerName: Joi.string().equal('telegram', 'viber', 'fb-messenger'),
-  messengerPrice: Joi.number().min(250).max(500).required()
+const paymentPlanFields = {
+  tariffName: Joi.string().required(),
+  tariffFeatures: Joi.object().keys({
+    demoBots: Joi.number().required(),
+    realBots: Joi.number().required(),
+    botsConstructor: Joi.boolean().required(),
+    botsAnalytics: Joi.boolean().required(),
+    customersMailing: Joi.boolean().required(),
+    accessTransfer: Joi.boolean().required(),
+    employeesAccess: Joi.boolean().required(),
+    crmIntegrations: Joi.boolean().required(),
+  }),
+  messengerName: Joi.string().required(),
+  messengerPrice: Joi.number().required()
 }
 
 module.exports = {
@@ -29,5 +35,5 @@ module.exports = {
   ValidationError,
   Joi,
   userFields,
-  billingFields
+  paymentPlanFields
 }

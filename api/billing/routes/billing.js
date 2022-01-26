@@ -3,21 +3,26 @@ const billingController = require('../controllers');
 
 const {
   validate,
-  paymentPlanSchema
+  createPaymentRatesSchema,
+  calculatePriceSchema
 } = require('../validation');
 
 const { authMiddleware } = require('../../../middleware');
 
 billingRouter
+  .get('/payment-plan', billingController.getPaymentPlanData);
+
+billingRouter
   .post(
     '/payment-plan',
     authMiddleware.adminRoute,
-    validate(paymentPlanSchema),
+    validate(createPaymentRatesSchema),
     billingController.setPaymentPlanData
   );
 
 billingRouter
   .post('/payment-plan/calculate',
+    validate(calculatePriceSchema),
     billingController.calculatePaymentPlan
   );
 

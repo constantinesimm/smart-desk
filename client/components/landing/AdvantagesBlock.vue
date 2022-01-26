@@ -3,9 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="5">
-          <!--
-          <logotype-animation :height="500" :width="500" />
-          -->
+          <animated-logotypes animation-file="appLogo" :height="500" :width="500" />
         </v-col>
         <v-col cols="7">
           <v-card elevation="0"  style="background: rgb(242, 242, 242);">
@@ -46,13 +44,13 @@
 
 <script>
   import IconsMixin from '@/mixins/IconsMixin';
-  const LogotypeAnimation = () => import('@/components/core/LogotypeAnimation');
+  const AnimatedLogotypes = () => import('@/components/core/AnimatedLogotypes');
 
   export default {
     name: 'AdvantagesBlock',
     mixins: [IconsMixin],
     components: {
-      LogotypeAnimation
+      AnimatedLogotypes
     }
   }
 </script>

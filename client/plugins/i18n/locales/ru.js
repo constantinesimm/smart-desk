@@ -162,14 +162,18 @@ export default {
     pricingBlock: {
       title: 'Тарифные планы',
       subtitle: 'Выберите наиболее оптимальный план, соответствующий вашим потребностям.',
-      paymentPeriodTitle: 'Выберите период оплаты. <br> <div class="d-flex flex-row justify-center text-decoration-underline" style="font-size: 14px"><b>P.S. Годовой платеж на 20 % дешевле</b></div>',
       paymentPeriodYear: 'Год',
       paymentPeriodMonth: 'Месяц',
-      selectBots: 'Выберите мессенджеры, которые будут участвовать в проекте',
+      paymentIncentive: 'Оплата с выгодой в 20%',
+      monthlyFeePayment: 'Ежемесячная оплата',
+      planPeriods: {
+        month: 'в месяц',
+        year: 'в год'
+      },
       plans: {
         features: {
-          demoBotsTitle: 'Количество демо ботов',
-          realBotsTitle: 'Количество production ботов',
+          demoBots: 'Кол-во demo ботов',
+          realBots: 'Кол-во production ботов',
           botsConstructor: 'Графический конструктор',
           botsAnalytics: 'Раздел "Аналитики"',
           customersMailing: 'Рассылка клиентам',
@@ -186,8 +190,8 @@ export default {
           title: 'Джедай',
           description: 'Тариф для уверенных'
         },
-        yoda: {
-          title: 'Мастер Йода',
+        master: {
+          title: 'Мастер',
           description: 'Тариф для профессионалов'
         }
       },

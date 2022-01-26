@@ -47,5 +47,6 @@
 	"email.passwordRecovery.button": "Recover my password",
 	"email.passwordRecovery.warning": "If you didn’t ask to recover your password, please ignore this email.",
 	"email.passwordRecovery.description": "You receive this email because you or someone initiated a password recovery operation on your SmartDesk account.",
-	"billing.paymentPlan.create": "New Payment Plan data successful created"
+	"billing.paymentPlan.create": "New Payment Plan data successful created",
+	"billing.paymentPlan.noActivePaymentData": "No active fare calculation data found. Please try again later"
 }

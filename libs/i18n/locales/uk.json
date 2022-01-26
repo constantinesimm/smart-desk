@@ -47,5 +47,6 @@
 	"email.passwordRecovery.button": "Відновити мій пароль",
 	"email.passwordRecovery.warning": "Якщо ви не просили відновити свій пароль, проігноруйте цей лист.",
 	"email.passwordRecovery.description": "Ви отримали цей лист, оскільки ви або хтось ініціював операцію відновлення пароля у вашому обліковому записі SmartDesk.",
-	"billing.paymentPlan.create": "Дані нового плану платежів успішно створено"
+	"billing.paymentPlan.create": "Дані нового плану платежів успішно створено",
+	"billing.paymentPlan.noActivePaymentData": "Активних даних для розрахунку вартості тарифу не знайдено. Повторіть спробу трохи згодом"
 }

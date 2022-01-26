@@ -1,35 +1,75 @@
 const { Schema, model } = require('mongoose');
 
 const PaymentPlanSchema = new Schema({
-  discounts: {
-    year: {
-      type: Number,
-      required: true
-    },
-    coupleMessengers: {
-      type: Number,
-      required: true
-    },
-    tripleMessengers: {
-      type: Number,
-      required: true
-    }
+  status: {
+    type: String,
+    enum: ['active', 'paused', 'archieved'],
+    default: 'active'
   },
-  paymentPeriods: {
-    yearly: {
-      type: Number,
-      default: 365
+  paymentRates: [{
+    _id: false,
+    name: {
+      type: String,
+      required: true
     },
-    monthly: {
-      type: Number,
-      default: 30
+    features: {
+      demoBots: {
+        type: Number,
+        required: true
+      },
+      realBots: {
+        type: Number,
+        required: true
+      },
+      botsConstructor: {
+        type: Boolean,
+        required: true
+      },
+      botsAnalytics: {
+        type: Boolean,
+        required: true
+      },
+      customersMailing: {
+        type: Boolean,
+        required: true
+      },
+      accessTransfer: {
+        type: Boolean,
+        required: true
+      },
+      employeesAccess: {
+        type: Boolean,
+        required: true
+      },
+      crmIntegrations: {
+        type: Boolean,
+        required: true
+      },
     }
-  },
+  }],
+  paymentPeriods: [{
+    _id: false,
+    label: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: Number,
+      required: true
+    },
+    discount: {
+      type: Number,
+      defaults: null
+    },
+    multiplicator: {
+      type: Number,
+      required: true
+    },
+  }],
   messengers: [{
     _id: false,
     name: {
       type: String,
-      enum: ['telegram', 'viber', 'fb-messenger'],
       required: true
     },
     price: {

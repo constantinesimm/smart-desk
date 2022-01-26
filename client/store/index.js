@@ -7,20 +7,23 @@ import createPersistedState from 'vuex-persistedstate';
  */
 import AppModule from '@/store/modules/app.module';
 import UserModule from '@/store/modules/user.module';
+import BillingModule from '@/store/modules/billing.module';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     app: AppModule,
-    user: UserModule
+    user: UserModule,
+    billing: BillingModule
   },
   plugins: [
     createPersistedState({
       key: 'smart_bot',
       paths: [
         'app',
-        'user'
+        'user',
+        'billing'
       ],
       storage: {
         getItem: (key) => localStorage.getItem(key),
