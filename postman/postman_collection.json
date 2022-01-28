@@ -1,0 +1,654 @@
+{
+	"info": {
+		"_postman_id": "cc2d9490-d1a3-4719-9058-65ca9c067785",
+		"name": "Smart Desk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Local Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ([401, 403, 422, 500].includes(pm.response.code)) return;",
+									"",
+									"//console.log(pm.response.headers);",
+									"",
+									"const authHeader = pm.response.headers.filter(item => item.key === 'authorization').shift();",
+									"const langHeader = pm.response.headers.filter(item => item.key === 'accept-language').shift();",
+									"",
+									"//console.log(authHeader);",
+									"//console.log(langHeader);",
+									"pm.globals.set(langHeader.key, langHeader.value);",
+									"pm.globals.set(authHeader.key, authHeader.value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "constantine.peschanov@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "secret",
+									"value": "Apatit33",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/local/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"local",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Local Logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/local/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"local",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Local Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "constantine.peschanov@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Костянтин",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Песчанов",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "uk",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/local/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"local",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Local Register Complete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ([401, 403, 422, 500].includes(pm.response.code)) return;",
+									"",
+									"//console.log(pm.response.headers);",
+									"",
+									"const authHeader = pm.response.headers.filter(item => item.key === 'authorization').shift();",
+									"const langHeader = pm.response.headers.filter(item => item.key === 'accept-language').shift();",
+									"",
+									"//console.log(authHeader);",
+									"//console.log(langHeader);",
+									"pm.globals.set(langHeader.key, langHeader.value);",
+									"pm.globals.set(authHeader.key, authHeader.value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "constantine.peschanov@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "secret",
+									"value": "Apatit33",
+									"type": "text"
+								},
+								{
+									"key": "confirmSecret",
+									"value": "Apatit33",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "61f0846c70f87e0d21fbf6b3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/local/register/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"local",
+								"register",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Tokens (auth/service)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/token/verificate/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWYwODQ2YzcwZjg3ZTBkMjFmYmY2YjMiLCJ1c2VyRW1haWwiOiJjb25zdGFudGluZS5wZXNjaGFub3ZAZ21haWwuY29tIiwiaWF0IjoxNjQzMTUyNDkyLCJleHAiOjE2NDMyMzg4OTJ9.sLwsGWAh2XD8cI_n1NhodY5-JCGxutvcuBKbEm_8pys",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"token",
+								"verificate",
+								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWYwODQ2YzcwZjg3ZTBkMjFmYmY2YjMiLCJ1c2VyRW1haWwiOiJjb25zdGFudGluZS5wZXNjaGFub3ZAZ21haWwuY29tIiwiaWF0IjoxNjQzMTUyNDkyLCJleHAiOjE2NDMyMzg4OTJ9.sLwsGWAh2XD8cI_n1NhodY5-JCGxutvcuBKbEm_8pys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Local Password Reset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "constantine.peschanov@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/local/password/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"local",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Local Password Reset Complete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ([401, 403, 422, 500].includes(pm.response.code)) return;",
+									"",
+									"//console.log(pm.response.headers);",
+									"",
+									"const authHeader = pm.response.headers.filter(item => item.key === 'authorization').shift();",
+									"const langHeader = pm.response.headers.filter(item => item.key === 'accept-language').shift();",
+									"",
+									"//console.log(authHeader);",
+									"//console.log(langHeader);",
+									"pm.globals.set(langHeader.key, langHeader.value);",
+									"pm.globals.set(authHeader.key, authHeader.value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "constantine.peschanov@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "61f0846c70f87e0d21fbf6b3",
+									"type": "text"
+								},
+								{
+									"key": "secret",
+									"value": "Apatit33",
+									"type": "text"
+								},
+								{
+									"key": "confirmSecret",
+									"value": "Apatit33",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/local/password/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"local",
+								"password",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Google Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ([401, 403, 422, 500].includes(pm.response.code)) return;",
+									"",
+									"//console.log(pm.response.headers);",
+									"",
+									"const authHeader = pm.response.headers.filter(item => item.key === 'authorization').shift();",
+									"const langHeader = pm.response.headers.filter(item => item.key === 'accept-language').shift();",
+									"",
+									"//console.log(authHeader);",
+									"//console.log(langHeader);",
+									"pm.globals.set(langHeader.key, langHeader.value);",
+									"pm.globals.set(authHeader.key, authHeader.value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "googleIdToken",
+									"value": "dzsavvdsvsdvsdvsdvsdvsdv",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/social/google",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"social",
+								"google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Facebook Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if ([401, 403, 422, 500].includes(pm.response.code)) return;",
+									"",
+									"//console.log(pm.response.headers);",
+									"",
+									"const authHeader = pm.response.headers.filter(item => item.key === 'authorization').shift();",
+									"const langHeader = pm.response.headers.filter(item => item.key === 'accept-language').shift();",
+									"",
+									"//console.log(authHeader);",
+									"//console.log(langHeader);",
+									"pm.globals.set(langHeader.key, langHeader.value);",
+									"pm.globals.set(authHeader.key, authHeader.value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "uk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "facebookUserId",
+									"value": "2595994663896977",
+									"type": "text"
+								},
+								{
+									"key": "facebookAccessToken",
+									"value": "EAAOMG9JSS50BADlCCvdhtceJGSM6zSZBIORg4ZAuSrNBENSOZAbl36CyrNnGFPZAwJfEHndPybl8EnatZClPVslx7TM6KQaqQcn0rviKlfyHLyv1eC7VhVBqgo1AsZCNbHCFH8jY56PZA35adoHFjTk2IPRNZCZCNZB3aZCwfm39KcP7adOzUjEHmS1lD7M8ynN5eL3aH5buURZBrZBe7TszPztZAblUR95PV5e1UZD",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/auth/social/facebook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"auth",
+								"social",
+								"facebook"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "billing",
+			"item": [
+				{
+					"name": "Calculate Payment Price",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "{{accept-language}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "paymentPeriod",
+									"value": "yearly",
+									"type": "text"
+								},
+								{
+									"key": "messengers",
+									"value": "[\"telegram\", \"viber\"]",
+									"type": "text"
+								},
+								{
+									"key": "paymentPlan",
+									"value": "yoda",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/billing/payment-plan/calculate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"billing",
+								"payment-plan",
+								"calculate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Other",
+			"item": [
+				{
+					"name": "Facebook get user profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://graph.facebook.com/v12.0/me?fields=id%2Clast_name%2Cfirst_name%2Cemail&access_token=EAAG0ZBU9IPk4BALoXnj5STsb1yFb20Vn8Y1W6TC6y5kvePd0U6e2ZCkQqoqjJDULYGfFW01k7YhJH53fXZC6goW58pZAK1eLaaBvyCaZBJYxyBjBwZB4grDLFbJNc3yc9NWg1ZACl6waE5mgq8Ll1dtxKNvBEGIC50fZAJIGdE2DcpMKqUERFFrS9O0dkHajx8rQBitpyntPSl5dI58BAgT3zPSVWimv46NnSDXVsNtoda5GTEzoZCGUnZAC8fWcsD8dUZD",
+							"protocol": "https",
+							"host": [
+								"graph",
+								"facebook",
+								"com"
+							],
+							"path": [
+								"v12.0",
+								"me"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id%2Clast_name%2Cfirst_name%2Cemail"
+								},
+								{
+									"key": "access_token",
+									"value": "EAAG0ZBU9IPk4BALoXnj5STsb1yFb20Vn8Y1W6TC6y5kvePd0U6e2ZCkQqoqjJDULYGfFW01k7YhJH53fXZC6goW58pZAK1eLaaBvyCaZBJYxyBjBwZB4grDLFbJNc3yc9NWg1ZACl6waE5mgq8Ll1dtxKNvBEGIC50fZAJIGdE2DcpMKqUERFFrS9O0dkHajx8rQBitpyntPSl5dI58BAgT3zPSVWimv46NnSDXVsNtoda5GTEzoZCGUnZAC8fWcsD8dUZD"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "billing",
+					"item": [
+						{
+							"name": "Set Payment Plan Data",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "uk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"discounts\": {\n        \"year\": 20,\n        \"coupleMessengers\": 2.5,\n        \"tripleMessengers\": 5\n    },\n    \"messengers\": [\n        {\n            \"name\": \"telegram\",\n            \"price\": 275\n        },\n        {\n            \"name\": \"viber\",\n            \"price\": 350\n        },\n        {\n            \"name\": \"fb-messenger\",\n            \"price\": 425\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/billing/payment-plan",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"billing",
+										"payment-plan"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

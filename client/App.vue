@@ -1,43 +1,42 @@
 <template>
-  <div id="smartDesk-app">
-    <component :is="resolveLayout">
-      <transition
-        name="fade"
-        mode="out-in"
-        @beforeLeave="beforeLeave"
-        @enter="enter"
-        @afterEnter="afterEnter"
-      >
-        <router-view/>
-      </transition>
-    </component>
-    <terms-and-privacy-policy-dialog v-if="isTermsAndPolicyDialogVisible"/>
-  </div>
+  <component :is="resolveLayout">
+    <transition
+      name="fade"
+      mode="out-in"
+      @beforeLeave="beforeLeave"
+      @enter="enter"
+      @afterEnter="afterEnter"
+    >
+
+      <router-view/>
+
+    </transition>
+  </component>
 </template>
 
 <script>
-const LayoutBlank = () => import('@/layouts/Blank.vue')
-const LayoutContent = () => import('@/layouts/Content.vue')
-const LayoutLanding = () => import('@/layouts/Landing.vue')
 const TermsAndPrivacyPolicyDialog = () => import('@/components/core/TermsAndPrivacyPolicyDialog');
 
 export default {
   name: 'App',
   components: {
-    LayoutBlank,
-    LayoutContent,
-    LayoutLanding,
     TermsAndPrivacyPolicyDialog
   },
   data() {
     return {
-      isTermsAndPolicyDialogVisible: false
+      isTermsAndPolicyDialogVisible: false,
+      isTermsAndPolicyDialogTab: null
     }
   },
   watch: {
     $route: {
       immediate: true,
       handler(to, from) {
+        if (to.query.lang !== undefined) {
+          this.$store.dispatch('app/changeLocale', to.query.lang);
+          this.$vuetify.lang.current = to.query.lang;
+          this.$router.replace(to.path);
+        }
         if (to.matched.some(record => record.meta.pageTitle)) {
           document.title = this.$vuetify.lang.t(to.meta.pageTitle);
         }
@@ -46,10 +45,12 @@ export default {
   },
   computed: {
     resolveLayout() {
-      return `layout-${ this.$route.meta.layout }`
+      return `${ this.$route.meta.layout || 'blank'}-layout`;
     },
   },
   created() {
+    console.log('this.$route', this.$route)
+    console.log('this.router', this.$router)
     this.$eventHub.$on('session-expired-tooltip', this.handleExpiredSession);
     this.$eventHub.$on('handle-terms-and-privacy', this.handlePrivacyDialogVisible);
   },
@@ -66,8 +67,11 @@ export default {
         this.$router.push({ name: 'LoginPage' });
       }, 2000);
     },
-    handlePrivacyDialogVisible() {
+    handlePrivacyDialogVisible(tab) {
+      if (tab) this.isTermsAndPolicyDialogTab = Number(tab);
       this.isTermsAndPolicyDialogVisible = !this.isTermsAndPolicyDialogVisible;
+
+      if (!this.isTermsAndPolicyDialogVisible) this.isTermsAndPolicyDialogTab = null;
     },
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
@@ -89,19 +93,19 @@ export default {
 </script>
 
 <style lang="scss">
-#smartDesk-app {
-  background: #f4f5fa;
-}
+  #app {
+    font-family: 'Ubuntu', sans-serif;
+  }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
 
-.fade-enter,
-.fade-leave-active {
-  opacity: 0
-}
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
 </style>

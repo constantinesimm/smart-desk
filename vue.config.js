@@ -1,5 +1,5 @@
 const path = require('path')
-const ImageminPlugin = require('imagemin-webpack-plugin').default
+//const ImageminPlugin = require('imagemin-webpack-plugin').default
 const { mergeSassVariables } = require('@vuetify/cli-plugin-utils')
 
 module.exports = {
@@ -13,9 +13,11 @@ module.exports = {
       compress: true,
       disableHostCheck: true,
       clientLogLevel: 'info',
-      https: true,
+      https: false,
+      hot: true,
+      liveReload: true,
       watchOptions: {
-        poll: true,
+        poll: false,
       },
     }
 
@@ -40,11 +42,6 @@ module.exports = {
         },
       },
     }
-    config.plugins.push(
-      new ImageminPlugin({
-        test: /\.(jpe?g|png|gif|svg)$/i,
-      }),
-    )
   },
   chainWebpack: config => {
     config.entry('app').clear().add('./client/main.js').end()

@@ -9,6 +9,9 @@
 <script>
   export default {
     name: 'AuthenticatePage',
+    created() {
+      console.log('AuthenticatePage', this.$route);
+    }
   }
 </script>
 

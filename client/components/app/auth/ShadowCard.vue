@@ -6,7 +6,7 @@
       <v-tooltip top transition="scale-transition">
         <template #activator="{ on, attrs }">
           <a :href="landingUrl">
-            <logotype-animation :height="125" :width="125" />
+            <animated-logotypes :height="125" :width="125" />
           </a>
         </template>
       </v-tooltip>
@@ -69,7 +69,7 @@
 
 <script>
   import IconsMixin from '@/mixins/IconsMixin';
-  const LogotypeAnimation = () => import('@/components/core/LogotypeAnimation');
+  const AnimatedLogotypes = () => import('@/components/core/AnimatedLogotypes');
   const SocialLoginButtons = () => import('@/components/app/auth/SocialLoginButtons');
 
   export default {
@@ -83,7 +83,7 @@
       }
     },
     components: {
-      LogotypeAnimation,
+      AnimatedLogotypes,
       SocialLoginButtons
     },
     data() {

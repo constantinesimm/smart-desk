@@ -14,8 +14,10 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "@hipsjs/flowy-vue": "^1.0.13",
     "@mdi/js": "^5.9.55",
     "@vuetify/cli-plugin-utils": "^0.0.9",
+    "animated-number-vue": "^1.0.0",
     "apexcharts": "^3.27.3",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",

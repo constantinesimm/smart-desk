@@ -8,6 +8,8 @@
 	"auth.midware.privateRoute": "Сторінка доступна лише для автентифікованих користувачів",
 	"auth.midware.publicRoute": "Сторінка доступна лише для гостей-користувачів",
 	"auth.midware.userNotFound": "Користувач не знайдений або ще не створений",
+	"auth.midware.adminRoute": "Сторінка доступна лише для адміністратора",
+	"auth.midware.adminRequired": "Заборонено! Недостатьо прав доступу",
 	"auth.error.userNotFound": "Користувач не знайдений або ще не створений",
 	"auth.error.notVerified": "Будь ласка, підтвердьте свою електронну адресу",
 	"auth.error.invalidCredentials": "Електронна адреса або пароль неправильні",
@@ -44,5 +46,7 @@
 	"email.passwordRecovery.hint": "Ми тут, щоб допомогти. Натисніть кнопку нижче, щоб змінити свій пароль.",
 	"email.passwordRecovery.button": "Відновити мій пароль",
 	"email.passwordRecovery.warning": "Якщо ви не просили відновити свій пароль, проігноруйте цей лист.",
-	"email.passwordRecovery.description": "Ви отримали цей лист, оскільки ви або хтось ініціював операцію відновлення пароля у вашому обліковому записі SmartDesk."
+	"email.passwordRecovery.description": "Ви отримали цей лист, оскільки ви або хтось ініціював операцію відновлення пароля у вашому обліковому записі SmartDesk.",
+	"billing.paymentPlan.create": "Дані нового плану платежів успішно створено",
+	"billing.paymentPlan.noActivePaymentData": "Активних даних для розрахунку вартості тарифу не знайдено. Повторіть спробу трохи згодом"
 }

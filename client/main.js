@@ -1,53 +1,19 @@
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store'
-import router from './router'
+import Vue from 'vue';
+import App from './App';
 
-import '@/assets/styles/layout.scss'
-import 'sweetalert2/dist/sweetalert2.min.css'
+import store from './store';
+import router from './router';
 
-import vuetify from './plugins/vuetify'
-import VueSweetalert2 from 'vue-sweetalert2';
-import LottieAnimation from 'lottie-web-vue';
-import googleAuth from 'vue-google-oauth2';
+import '@/connect-styles';
+import vuetify from './plugins/vuetify';
+import connectComponents from '@/connect-components';
+import connectPlugins from '@/connect-plugins';
 
-Vue.config.productionTip = process.env.NODE_ENV === 'development';
+connectPlugins(Vue);
+connectComponents(Vue);
 
 Vue.prototype.$eventHub = new Vue();
-
-Vue.component('lottie-animation', LottieAnimation);
-Vue.use(VueSweetalert2);
-Vue.use({
-  install: function(vue) {
-    Vue.prototype.$showSuccess = function(msg) {
-      vue.swal({
-        text: msg,
-        icon: 'success',
-        timer: 5000,
-        toast: true,
-        position: 'top-right',
-        showConfirmButton: false
-      })
-    };
-
-    Vue.prototype.$showError = function(msg) {
-      vue.swal({
-        text: msg,
-        icon: 'error',
-        timer: 5000,
-        toast: true,
-        position: 'top-right',
-        showConfirmButton: false
-      })
-    };
-  }
-});
-
-Vue.use(googleAuth, {
-  clientId: process.env.VUE_APP_GOOGLE_CLIENT_ID,
-  scope: 'profile email',
-  prompt: 'select_account'
-});
+Vue.config.productionTip = process.env.NODE_ENV === 'development';
 
 
 new Vue({
@@ -55,4 +21,4 @@ new Vue({
   router,
   store,
   render: h => h(App),
-}).$mount('#smartDesk-app')
+}).$mount('#app')

@@ -2,9 +2,10 @@
 @import './variables';
 
 body {
+  font-family: 'Ubuntu', sans-serif!important;
   margin: 0;
 
-  #smartDesk-app {
+  #app {
     font-family: 'Ubuntu', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

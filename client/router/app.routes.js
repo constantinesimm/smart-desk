@@ -1,7 +1,7 @@
-const appRoutes = [
+const routes = [
   {
     path: '/',
-    redirect: '/dashboard'
+    redirect: { name: 'DashboardPage' },
   },
   {
     path: '/auth',
@@ -81,4 +81,4 @@ const appRoutes = [
   }
 ];
 
-export default appRoutes;
+export default routes;

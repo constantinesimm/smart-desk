@@ -11,9 +11,6 @@ $primary-shade--dark: #e7e3fc;
 $shadow-color--light: $primary-shade--light;
 $shadow-color--dark: #131120;
 
-// Typography
-$body-font-family: 'Inter', sans-serif;
-
 @import '~vuetify/src/styles/styles.sass';
 
 // ————————————————————————————————————
@@ -40,6 +37,10 @@ $theme-colors: (
 // ————————————————————————————————————
 
 // https://vuetifyjs.com/en/api/vuetify/#sass-variables
+
+// Typography
+$body-font-family: 'Ubuntu', sans-serif !default;
+$heading-font-family: $body-font-family !default;
 
 $color-pack: false;
 $border-radius-root: 5px;
@@ -404,7 +405,7 @@ $textarea-line-height: 1.5rem;
 //
 //* ——— Switch ——————————————————
 //
-
+$switch-track-width: 50px !default;
 $switch-thumb-elevation: 1;
 
 //
