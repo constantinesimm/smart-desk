@@ -96,8 +96,8 @@ export default {
       terms: 'Угода користувача',
     },
     welcomeBlock: {
-      title: 'Розумний конструктор ботів для месенджерів: <br> <b>Telegram</b>, <b>Viber</b>, <b>Facebook</b>',
-      subtitle: 'Створюйте ботів будь-якої складності для популярних месенджерів <b class="text-decoration-underline">без програмування</b>',
+      title: 'Розумний конструктор чат-ботів для бiзнесу',
+      subtitle: 'Створюйте ботів будь-якої складності <b class="text-decoration-underline">без програмування</b>',
       button: 'Спробувати безкоштовно'
     },
     descriptionBlock: {
@@ -161,10 +161,10 @@ export default {
     pricingBlock: {
       title: 'Тарифні плани',
       subtitle: 'Виберіть найбільш оптимальний план, що відповідає вашим потребам.',
-      paymentPeriodYear: 'Рік',
-      paymentPeriodMonth: 'Місяць',
-      paymentIncentive: 'Оплата з вигодою в 20%',
+      paymentPeriodYear: 'Річна пiдписка',
+      paymentPeriodMonth: 'Щомісячно',
       monthlyFeePayment: 'Щомісячна оплата',
+      discountBadge: 'Зекономити до 20%',
       planPeriods: {
         month: 'на місяць',
         year: 'на рік'

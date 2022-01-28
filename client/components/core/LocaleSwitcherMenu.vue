@@ -19,10 +19,10 @@
 
         <v-list>
           <v-list-item
-            v-for="(item, index) in localesList"
-            :key="index"
+            v-for="(item, index) in localesList" :key="index"
+            style="cursor: pointer"
           >
-            <v-list-item-title @click="handleSelectLocale(index)" class="d-flex justify-space-between cursor-pointer">
+            <v-list-item-title @click="handleSelectLocale(index)" :class="['d-flex', checkViewMode.icon ? 'justify-center' : 'justify-space-between']">
               <img v-if="checkViewMode.icon || checkViewMode.full" height="25" width="25" :src="item.icon" :class="{'mr-3': checkViewMode.full }" />
 
               <span v-if="checkViewMode.label || checkViewMode.full">

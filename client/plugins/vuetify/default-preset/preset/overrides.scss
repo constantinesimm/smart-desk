@@ -212,6 +212,7 @@ button {
 
 .v-card {
   .v-card__title {
+    font-family: $body-font-family;
     line-height: 1;
     padding-top: $card-spacer;
     padding-bottom: $card-spacer;
@@ -783,4 +784,13 @@ $btn-custom-heights: (
     -webkit-box-shadow: 0 0 0 1000px map-deep-get($material-dark, 'cards') inset !important;
     -webkit-text-fill-color: map-deep-get($material-dark, 'text', 'secondary') !important;
   }
+}
+
+.v-application {
+  [class*='text-'] {
+    color: #36405a;
+    font-family: 'Ubuntu', sans-serif !important;
+  }
+
+  font-family: 'Ubuntu', sans-serif !important;
 }

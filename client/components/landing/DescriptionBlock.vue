@@ -1,55 +1,53 @@
 <template>
-  <v-container style="padding-bottom: 90px">
-    <v-row justify="center" style="padding-bottom: 90px">
-      <v-col cols="4" align-self="center">
-        <v-card elevation="0">
-          <h2 class="text-left pb-2">
-            {{ $vuetify.lang.t('$vuetify.landing.descriptionBlock.chatbot.title') }}
-          </h2>
-          <div class="text-left" v-html="$vuetify.lang.t('$vuetify.landing.descriptionBlock.chatbot.text')" />
-        </v-card>
-      </v-col>
-
-      <v-col cols="4">
-        <v-card elevation="0">
-          <img :src="landing.descriptionChatbot" width="100%" />
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <v-row justify="center">
-      <v-container>
-        <v-row justify="center" class="mb-5">
-          <v-col>
-            <h2>
-              {{ $vuetify.lang.t('$vuetify.landing.descriptionBlock.opportunity.title') }}
+  <v-container id="advantages">
+    <v-card class="px-5 py-10" elevation="0">
+      <v-card-text>
+        <v-row justify="center">
+          <v-col cols="10" md="5" align-self="center">
+            <h2 class="text-center pb-2">
+              {{ $vuetify.lang.t('$vuetify.landing.descriptionBlock.chatbot.title') }}
             </h2>
-            <div class="subtitle">
-              {{ $vuetify.lang.t('$vuetify.landing.descriptionBlock.opportunity.subtitle') }}
-            </div>
+            <div class="text-left" v-html="$vuetify.lang.t('$vuetify.landing.descriptionBlock.chatbot.text')" />
+          </v-col>
+
+          <v-col cols="10" md="5">
+            <img :src="landing.descriptionChatbot" width="100%" />
           </v-col>
         </v-row>
+      </v-card-text>
+    </v-card>
 
-        <v-row justify="center" v-for="(row, idx) in oportunitieBlockContent" :key="idx">
-          <v-col cols="4" v-for="(column, idx) in row" :key="idx">
-            <v-card elevation="0">
-              <v-row>
-                <v-col cols="2">
-                  <img :src="column.icon" width="35" />
-                </v-col>
+    <v-card class="px-5 py-10" elevation="0">
+      <v-card-title class="justify-center text-h5 font-weight-bold">
+        {{ $vuetify.lang.t('$vuetify.landing.descriptionBlock.opportunity.title') }}
+      </v-card-title>
+      <v-card-subtitle>
+        {{ $vuetify.lang.t('$vuetify.landing.descriptionBlock.opportunity.subtitle') }}
+      </v-card-subtitle>
 
-                <v-col cols="10">
-                  <h4 class="text-left pb-2">
-                    {{ column.title }}
-                  </h4>
-                  <div class="text-left" v-html="column.text" />
-                </v-col>
-              </v-row>
-            </v-card>
+      <v-divider class="mt-10" />
+
+      <v-card-text v-for="(row, idx) in oportunitieBlockContent" :key="idx">
+        <v-row justify="center">
+          <v-col cols="10" md="5" v-for="(column, idx) in row" :key="idx">
+            <v-row>
+              <v-col cols="2">
+                <img :src="column.icon" width="35" />
+              </v-col>
+
+              <v-col cols="10">
+                <h4 class="text-left pb-2">
+                  {{ column.title }}
+                </h4>
+                <div class="text-left" v-html="column.text" />
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
-      </v-container>
-    </v-row>
+      </v-card-text>
+    </v-card>
+
+
   </v-container>
 </template>
 

@@ -1,84 +1,88 @@
 <template>
-  <div class="block-wrapper">
-    <v-container>
-      <v-row class="mb-10">
-        <v-col>
-          <h2 class="pb-5">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.title') }}
-          </h2>
-          <div class="subtitle">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.subtitle') }}
-          </div>
-        </v-col>
-      </v-row>
+  <v-container id="solutions">
+    <v-card class="px-5 py-10" elevation="0">
+      <v-card-title class="justify-center text-h5 font-weight-bold">
+        {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.title') }}
+      </v-card-title>
 
-      <v-divider inset />
+      <v-card-subtitle>
+        {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.subtitle') }}
+      </v-card-subtitle>
 
-      <v-row justify="center" class="mt-5 mb-5">
-        <v-col cols="4">
-          <img :src="landing.solutionsVisualRedactor" width="300px" />
-        </v-col>
+      <v-divider class="mt-10" />
 
-        <v-col cols="4">
-          <h5 class="title">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.visualRedactor.title') }}
-          </h5>
-          <div class="text">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.visualRedactor.text') }}
-          </div>
-        </v-col>
-      </v-row>
+      <v-card-text class="my-5">
+        <v-row justify="center">
+          <v-col md="5" cols="10" class="order-last order-md-first">
+            <img :src="landing.solutionsVisualRedactor" width="300px" />
+          </v-col>
+          <v-col md="5" cols="10">
+            <h5 class="title">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.visualRedactor.title') }}
+            </h5>
+            <div class="text">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.visualRedactor.text') }}
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
 
-      <v-divider inset />
+      <v-divider />
 
-      <v-row justify="center" class="mt-5 mb-5">
-        <v-col cols="4" align-self="center">
-          <h5 class="title">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.chatCommunicate.title') }}
-          </h5>
-          <div class="text" v-html="$vuetify.lang.t('$vuetify.landing.solutionsBlock.chatCommunicate.text')" />
-        </v-col>
+      <v-card-text class="my-5">
+        <v-row justify="center">
+          <v-col md="5" cols="10">
+            <h5 class="title">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.chatCommunicate.title') }}
+            </h5>
+            <div class="text" v-html="$vuetify.lang.t('$vuetify.landing.solutionsBlock.chatCommunicate.text')"></div>
+          </v-col>
 
-        <v-col cols="4">
-          <img :src="landing.solutionsChatCommunicate" width="300px" />
-        </v-col>
-      </v-row>
+          <v-col md="5" cols="10">
+            <img :src="landing.solutionsChatCommunicate" width="300px" />
+          </v-col>
+        </v-row>
+      </v-card-text>
 
-      <v-divider inset />
+      <v-divider />
 
-      <v-row justify="center" class="mt-5 mb-5">
-        <v-col cols="4">
-          <img :src="landing.solutionsStatistics" width="300px" />
-        </v-col>
+      <v-card-text class="my-5">
+        <v-row justify="center">
+          <v-col md="5" cols="10" class="order-last order-md-first">
+            <img :src="landing.solutionsStatistics" width="300px" />
+          </v-col>
+          <v-col md="5" cols="10">
+            <h5 class="title">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.gatherStatistics.title') }}
+            </h5>
+            <div class="text">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.gatherStatistics.text') }}
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
 
-        <v-col cols="4">
-          <h5 class="title">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.gatherStatistics.title') }}
-          </h5>
-          <div class="text">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.gatherStatistics.text') }}
-          </div>
-        </v-col>
-      </v-row>
+      <v-divider />
 
-      <v-divider inset />
+      <v-card-text class="my-5">
+        <v-row justify="center">
+          <v-col md="5" cols="10">
+            <h5 class="title">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.segmentUsers.title') }}
+            </h5>
+            <div class="text">
+              {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.segmentUsers.text') }}
+            </div>
+          </v-col>
 
-      <v-row justify="center" align-content="center" class="mt-5">
-        <v-col cols="4">
-          <h5 class="title">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.segmentUsers.title') }}
-          </h5>
-          <div class="text">
-            {{ $vuetify.lang.t('$vuetify.landing.solutionsBlock.segmentUsers.text') }}
-          </div>
-        </v-col>
+          <v-col md="5" cols="10">
+            <img src="https://d2s30hray1l0uq.cloudfront.net/frontend/Customer-Segmentation.jpg" width="300px" />
+          </v-col>
+        </v-row>
+      </v-card-text>
 
-        <v-col cols="4">
-          <img src="https://d2s30hray1l0uq.cloudfront.net/frontend/Customer-Segmentation.jpg" width="300px" />
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -93,6 +97,10 @@
 <style lang="scss" scoped>
   .block-wrapper {
     padding: 50px 0;
+  }
+  .text-h5 {
+    font-family: "Ubuntu", sans-serif !important;
+    font-size: 1.5em;
   }
   .title {
     font-size: 16px!important;

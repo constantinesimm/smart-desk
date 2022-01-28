@@ -1,37 +1,25 @@
 <template>
-  <div id="app">
-    <component :is="resolveLayout">
-      <transition
-        name="fade"
-        mode="out-in"
-        @beforeLeave="beforeLeave"
-        @enter="enter"
-        @afterEnter="afterEnter"
-      >
+  <component :is="resolveLayout">
+    <transition
+      name="fade"
+      mode="out-in"
+      @beforeLeave="beforeLeave"
+      @enter="enter"
+      @afterEnter="afterEnter"
+    >
 
-        <router-view/>
+      <router-view/>
 
-      </transition>
-    </component>
-
-    <terms-and-privacy-policy-dialog v-if="isTermsAndPolicyDialogVisible" :show-tab="isTermsAndPolicyDialogTab" />
-  </div>
+    </transition>
+  </component>
 </template>
 
 <script>
-const LandingLayout = () => import('@/layouts/LandingLayout');
-const IndexLayout = () => import('@/layouts/IndexLayout');
-const BlankLayout = () => import('@/layouts/BlankLayout');
-const ContentLayout = () => import('@/layouts/ContentLayout');
 const TermsAndPrivacyPolicyDialog = () => import('@/components/core/TermsAndPrivacyPolicyDialog');
 
 export default {
   name: 'App',
   components: {
-    IndexLayout,
-    BlankLayout,
-    ContentLayout,
-    LandingLayout,
     TermsAndPrivacyPolicyDialog
   },
   data() {
@@ -57,7 +45,7 @@ export default {
   },
   computed: {
     resolveLayout() {
-      return this.$route.meta.layout !== undefined ? `${ this.$route.meta.layout }-layout` : 'index-layout';
+      return `${ this.$route.meta.layout || 'blank'}-layout`;
     },
   },
   created() {
@@ -105,19 +93,19 @@ export default {
 </script>
 
 <style lang="scss">
-#smartDesk-app {
-  background: #f4f5fa;
-}
+  #app {
+    font-family: 'Ubuntu', sans-serif;
+  }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
 
-.fade-enter,
-.fade-leave-active {
-  opacity: 0
-}
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0
+  }
 </style>

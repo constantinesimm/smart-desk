@@ -1,42 +1,34 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="landing-page">
     <welcome-block />
 
     <descriptions-block />
 
-    <advantages-block />
-
     <solutions-block />
 
-    <!--
     <prices-block />
-    -->
   </v-container>
 </template>
 
 <script>
-const LandingHeader = () => import('@/components/landing/core/LandingHeader');
-const LandingFooter = () => import('@/components/landing/core/LandingFooter');
 const WelcomeBlock = () => import('@/components/landing/WelcomeBlock');
-const AdvantagesBlock = () => import('@/components/landing/AdvantagesBlock');
 const DescriptionsBlock = () => import('@/components/landing/DescriptionBlock');
-//const PricesBlock = () => import('@/components/landing/PricesBlock');
 const SolutionsBlock = () => import('@/components/landing/SolutionsBlock');
+const PricesBlock = () => import('@/components/landing/PricesBlock');
 
 export default {
   name: 'LandingPage',
   components: {
-    LandingHeader,
-    LandingFooter,
     WelcomeBlock,
-    AdvantagesBlock,
     DescriptionsBlock,
-    //PricesBlock,
-    SolutionsBlock
+    SolutionsBlock,
+    PricesBlock,
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+  .landing-page {
+    padding: unset;
+  }
 </style>

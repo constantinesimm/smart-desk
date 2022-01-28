@@ -96,8 +96,8 @@ export default {
       terms: 'Terms of Service',
     },
     welcomeBlock: {
-      title: 'Smart messenger bot builder: <br> <b>Telegram</b>, <b>Viber</b>, <b>Facebook</b>',
-      subtitle: 'Create bots of any complexity for popular messengers <b class="text-decoration-underline">without programming</b>',
+      title: 'Smart chat-bot builder for your business',
+      subtitle: 'Create bots of any complexity <b class="text-decoration-underline">without programming</b>',
       button: 'Try for free'
     },
     descriptionBlock: {
@@ -161,10 +161,11 @@ export default {
     pricingBlock: {
       title: 'Pricing Plans',
       subtitle: 'Choose the plan that best suits your needs.',
-      paymentPeriodYear: 'Year',
-      paymentPeriodMonth: 'Month',
+      paymentPeriodYear: 'Annual',
+      paymentPeriodMonth: 'Monthly',
       paymentIncentive: 'Payment with a benefit of 20%',
       monthlyFeePayment: 'Monthly fee',
+      discountBadge: 'Save upto 20%',
       planPeriods: {
         month: 'per month',
         year: 'per year'
